@@ -64,6 +64,7 @@ public class ResultSEFAZUtil {
 		return result;						  
     }
     
+    
     public static String lerVNF(String xml){		
 		final Pattern pattern = Pattern.compile("<vNF>(.+?)</vNF>");
 		final Matcher matcher = pattern.matcher(xml);
