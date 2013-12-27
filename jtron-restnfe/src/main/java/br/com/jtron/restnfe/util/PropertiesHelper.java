@@ -1,6 +1,5 @@
 package br.com.jtron.restnfe.util;
 
-import java.io.FileInputStream;
 import java.util.Properties;
 
 public class PropertiesHelper {
@@ -18,8 +17,8 @@ public class PropertiesHelper {
 	
 	private PropertiesHelper() {
 	     try {
-	      properties = new Properties();      
-	      properties.load(new FileInputStream("/app/conf/restnfe.properties"));
+	      properties = new Properties();	      
+	      properties.load(this.getClass().getClassLoader().getResourceAsStream("restnfe.properties"));
 	     } catch (Exception e) {
 	      e.printStackTrace();
 	     }	     

@@ -5,6 +5,7 @@
 package br.com.jtron.restnfe.cert;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -18,6 +19,8 @@ import java.security.cert.X509Certificate;
 import java.util.Enumeration;
 
 import org.apache.commons.httpclient.protocol.Protocol;
+
+import br.com.jtron.restnfe.util.PropertiesHelper;
 
 /**
  * @author jose.pereira
@@ -49,7 +52,7 @@ public class AutenticadorCert {
     }*/     
 	
 	
-	public static void preparaAmbiente(InputStream entrada,char[] senha){
+	public void preparaAmbiente(InputStream entrada,char[] senha){
 		
 		try {
 			       
@@ -68,9 +71,10 @@ public class AutenticadorCert {
 	                    
 	        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	        ////////////////URL PERMANENTE DA CADEIA DE CARACTERES NECESSARIA NA ASSINATURA SSL COM O SEFAZ ///////////
-	        ///////////////////////////////////////////////////////////////////////////////////////////////////////////	        	        
-	        System.setProperty("javax.net.ssl.trustStore", "/app/cert/NFeCacerts");	        	        
-	        socketFactoryDinamico.setFileCacerts("/app/cert/NFeCacerts");  
+	        ///////////////////////////////////////////////////////////////////////////////////////////////////////////	        
+	        String cacert = new File(this.getClass().getClassLoader().getResource("NFeCacerts").getFile()).getAbsolutePath();	        
+	        System.setProperty("javax.net.ssl.trustStore", cacert);	        	        
+	        socketFactoryDinamico.setFileCacerts(cacert);  
 	        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	        ///////////////////////////////////////////////////////////////////////////////////////////////////////////	        	        	        
 	        

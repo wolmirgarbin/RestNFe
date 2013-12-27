@@ -32,8 +32,9 @@ public class RestNFeController {
             String urlStatus = URLSefazConsultaStatus.getURLPorUF(Integer.valueOf(estado),Integer.valueOf(ambiente));                        
             String certificado = PropertiesHelper.getInstance().getKey("certificado");
             String senha  = PropertiesHelper.getInstance().getKey("senha");            
-            InputStream in = new FileInputStream(certificado);              
-            AutenticadorCert.preparaAmbiente(in, senha.toCharArray());            
+            InputStream in = new FileInputStream(certificado);                          
+            AutenticadorCert autenticadorCert = new AutenticadorCert();            
+            autenticadorCert.preparaAmbiente(in, senha.toCharArray());            
 			String resultStatusSEFAZ = ConsultaService.consulta(chave, String.valueOf(ambiente),urlStatus);															
 			result.use(Results.xml()).from(resultStatusSEFAZ).serialize();			
 		} catch (Exception e) {
@@ -50,8 +51,9 @@ public class RestNFeController {
             String urlStatus = URLSefazConsultaStatus.getURLPorUF(Integer.valueOf(estado),Integer.valueOf(ambiente));                        
             String certificado = PropertiesHelper.getInstance().getKey("certificado");
             String senha  = PropertiesHelper.getInstance().getKey("senha");            
-            InputStream in = new FileInputStream(certificado);              
-            AutenticadorCert.preparaAmbiente(in, senha.toCharArray());            
+            InputStream in = new FileInputStream(certificado);                          
+            AutenticadorCert autenticadorCert = new AutenticadorCert();            
+            autenticadorCert.preparaAmbiente(in, senha.toCharArray());            
 			String resultStatusSEFAZ = ConsultaProtocoloService.consultaProtocolo(chave, String.valueOf(ambiente),urlStatus);															
 			result.use(Results.xml()).from(resultStatusSEFAZ).serialize();			
 		} catch (Exception e) {
@@ -66,7 +68,4 @@ public class RestNFeController {
 		result.use(Results.xml()).from(chaveAcessoNFe.gerarChave(cUF, cnpj, serie, nNF)).serialize();				
 	}
 	
-	
-	
 }
-
