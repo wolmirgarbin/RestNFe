@@ -2,11 +2,18 @@ package br.com.jtron.restnfe.controller;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.StringReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
+import br.com.gko.entidade.envio.TNFe;
 import br.com.jtron.restnfe.cert.AssinadorA1;
 import br.com.jtron.restnfe.cert.AutenticadorCert;
 import br.com.jtron.restnfe.sefaz.URLSefazConsultaStatus;
@@ -74,20 +81,50 @@ public class RestNFeController {
 	
 	@Path("/nfe/emitirNFe/{ambiente}/{uf}")
 	public void emitirNFe(String xml,String ambiente){
-				
 		
-		String chave = ResultSEFAZUtil.lerChNFe(xml);
-		String codigoEstado = chave.substring(0, 2);
+		try {
 		
-		String certificado = PropertiesHelper.getInstance().getKey("certificado");
-        String senha  = PropertiesHelper.getInstance().getKey("senha");        
-        xml = AssinadorA1.assinar(xml,certificado,senha);        
-        NFeEmissaoService nFeEmissaoService = new NFeEmissaoService();        
-        String url = URLSefazNFeRecepcao.getURLPorUF(Integer.valueOf(codigoEstado), Integer.valueOf(ambiente));
+			TNFe nfe = lerDownload(ResultSEFAZUtil.lerXMLNfeDownload(xml));		
+			
+			String chave = nfe.getInfNFe().getId();
+			String codigoEstado = chave.substring(3, 5);
+			
+			String certificado = PropertiesHelper.getInstance().getKey("certificado");
+	        String senha  = PropertiesHelper.getInstance().getKey("senha");        
+	        xml = AssinadorA1.assinar(xml,certificado,senha);        
+	        NFeEmissaoService nFeEmissaoService = new NFeEmissaoService();
+	        
+	        InputStream in = new FileInputStream(certificado);
+	        AutenticadorCert autenticadorCert = new AutenticadorCert();            
+            autenticadorCert.preparaAmbiente(in, senha.toCharArray());
+            
+	        String url = URLSefazNFeRecepcao.getURLPorUF(Integer.valueOf(codigoEstado), Integer.valueOf(ambiente));
+	        
+	        result.use(Results.xml()).from(nFeEmissaoService.emissao(xml, codigoEstado, url)).serialize();
         
-        result.use(Results.xml()).from(nFeEmissaoService.emissao(xml, codigoEstado, url)).serialize();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
+	
+	
+	private static TNFe lerDownload(String xml) throws Exception {  		
+        TNFe nfe = null;		       	        	       
+            if(xml!=null){                
+                JAXBContext context;
+                Unmarshaller unmarshaller;                       
+                Matcher m = Pattern.compile("(?s)(?=<NFe).*?>.*?(?<=</NFe>)").matcher(xml);
+                while(m.find()){            	                
+                    String strNFe = m.group(0);            	            	
+                    strNFe = strNFe.replace("<NFe>", "<NFe xmlns=\"http://www.portalfiscal.inf.br/nfe\">");            	            	
+                    context = JAXBContext.newInstance(TNFe.class);    
+                    unmarshaller = context.createUnmarshaller();                            
+                    nfe = (TNFe) unmarshaller.unmarshal(new StringReader(strNFe));                            
+                }         
+            }            
+        return nfe;
+    }  
 	
 	
 }
