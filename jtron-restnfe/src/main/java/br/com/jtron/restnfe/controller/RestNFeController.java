@@ -1,6 +1,7 @@
 package br.com.jtron.restnfe.controller;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.util.regex.Matcher;
@@ -18,11 +19,14 @@ import br.com.jtron.restnfe.cert.AssinadorA1;
 import br.com.jtron.restnfe.cert.AutenticadorCert;
 import br.com.jtron.restnfe.sefaz.URLSefazConsultaStatus;
 import br.com.jtron.restnfe.sefaz.URLSefazNFeRecepcao;
+import br.com.jtron.restnfe.sefaz.URLSefazNFeRetorno;
 import br.com.jtron.restnfe.util.ChaveAcessoNFe;
 import br.com.jtron.restnfe.util.PropertiesHelper;
 import br.com.jtron.restnfe.util.ResultSEFAZUtil;
+import br.com.jtron.restnfe.util.XmlUtil;
 import br.inf.portalfiscal.www.nfe.wsdl.nfeconsulta2.ConsultaProtocoloService;
 import br.inf.portalfiscal.www.nfe.wsdl.nferecepcao2.NFeEmissaoService;
+import br.inf.portalfiscal.www.nfe.wsdl.nferetrecepcao2.NfeRetEmissaoService;
 import br.inf.portalfiscal.www.nfe.wsdl.nfestatusservico2.ConsultaService;
 
 @Resource
@@ -99,10 +103,38 @@ public class RestNFeController {
             autenticadorCert.preparaAmbiente(in, senha.toCharArray());
             
 	        String url = URLSefazNFeRecepcao.getURLPorUF(Integer.valueOf(codigoEstado), Integer.valueOf(ambiente));
+	        	        
+	        String resultadoSEFAZ = nFeEmissaoService.emissao(xml, codigoEstado, url);
 	        
-	        result.use(Results.xml()).from(nFeEmissaoService.emissao(xml, codigoEstado, url)).serialize();
+	        XmlUtil.lerPotocoloEnvioLoto(resultadoSEFAZ);
+	        
+	        result.use(Results.xml()).from(resultadoSEFAZ).serialize();
         
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Path("/nfe/retorno/{ambiente}/{protocolo}/{estado}")
+	public void retornoEmissao(String ambiente, String protocolo,String estado){
+		
+		try {
+		NfeRetEmissaoService retEmissaoService = new NfeRetEmissaoService();			
+		
+		String url = URLSefazNFeRetorno.getURLPorUF(Integer.valueOf(estado), Integer.valueOf(ambiente));
+		
+		String certificado = PropertiesHelper.getInstance().getKey("certificado");
+        String senha  = PropertiesHelper.getInstance().getKey("senha");            
+        InputStream in = new FileInputStream(certificado);		                        
+        AutenticadorCert autenticadorCert = new AutenticadorCert();            
+        autenticadorCert.preparaAmbiente(in, senha.toCharArray());     
+		
+		String retorno = retEmissaoService.obterRetornoEmissao(protocolo, url, ambiente, estado);
+		
+		result.use(Results.xml()).from(retorno).serialize();
+		
+		} catch (FileNotFoundException e) {			
 			e.printStackTrace();
 		}
 		

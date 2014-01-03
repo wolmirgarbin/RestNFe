@@ -36,7 +36,7 @@ public class NFeEmissaoService {
 			nfeCabecMsgE.setNfeCabecMsg(nfeCabecMsg);
 			
 						
-			NfeRecepcao2Stub.NfeRecepcaoLote2Result result = stub.nfeRecepcaoLote2(nfeDadosMsg, nfeCabecMsgE);
+			NfeRecepcao2Stub.NfeRecepcaoLote2Result result = stub.nfeRecepcaoLote2(nfeDadosMsg, nfeCabecMsgE);						
 			
 			return result.localExtraElement.toString();
 			
@@ -51,6 +51,8 @@ public class NFeEmissaoService {
 		
 		return null;
 	}
+	
+	
 	
 	
 
