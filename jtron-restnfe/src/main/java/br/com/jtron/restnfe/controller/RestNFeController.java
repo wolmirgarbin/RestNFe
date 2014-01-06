@@ -104,9 +104,7 @@ public class RestNFeController {
             
 	        String url = URLSefazNFeRecepcao.getURLPorUF(Integer.valueOf(codigoEstado), Integer.valueOf(ambiente));
 	        	        
-	        String resultadoSEFAZ = nFeEmissaoService.emissao(xml, codigoEstado, url);
-	        
-	        XmlUtil.lerPotocoloEnvioLoto(resultadoSEFAZ);
+	        String resultadoSEFAZ = nFeEmissaoService.emissao(xml, codigoEstado, url);	        	        
 	        
 	        result.use(Results.xml()).from(resultadoSEFAZ).serialize();
         
