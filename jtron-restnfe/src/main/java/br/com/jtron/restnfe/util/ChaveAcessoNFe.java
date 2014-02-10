@@ -11,7 +11,7 @@ public class ChaveAcessoNFe {
               
         	SimpleDateFormat dateFormat = new SimpleDateFormat("yyMM");        	
             String mod = "55"; // Modelo do Documento Fiscal.                
-            String tpEmis = "2"; // Forma de emissão da NF-e                  
+            String tpEmis = "1"; // Forma de emissão da NF-e                  
               
             StringBuilder chave = new StringBuilder();  
             chave.append(lpadTo(cUF, 2, '0'));  

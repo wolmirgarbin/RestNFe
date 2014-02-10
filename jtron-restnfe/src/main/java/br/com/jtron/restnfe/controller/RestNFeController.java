@@ -1,9 +1,12 @@
 package br.com.jtron.restnfe.controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,13 +20,13 @@ import br.com.caelum.vraptor.view.Results;
 import br.com.gko.entidade.envio.TNFe;
 import br.com.jtron.restnfe.cert.AssinadorA1;
 import br.com.jtron.restnfe.cert.AutenticadorCert;
+import br.com.jtron.restnfe.sefaz.URLSefazConsultaSituacao;
 import br.com.jtron.restnfe.sefaz.URLSefazConsultaStatus;
 import br.com.jtron.restnfe.sefaz.URLSefazNFeRecepcao;
 import br.com.jtron.restnfe.sefaz.URLSefazNFeRetorno;
 import br.com.jtron.restnfe.util.ChaveAcessoNFe;
 import br.com.jtron.restnfe.util.PropertiesHelper;
 import br.com.jtron.restnfe.util.ResultSEFAZUtil;
-import br.com.jtron.restnfe.util.XmlUtil;
 import br.inf.portalfiscal.www.nfe.wsdl.nfeconsulta2.ConsultaProtocoloService;
 import br.inf.portalfiscal.www.nfe.wsdl.nferecepcao2.NFeEmissaoService;
 import br.inf.portalfiscal.www.nfe.wsdl.nferetrecepcao2.NfeRetEmissaoService;
@@ -62,7 +65,7 @@ public class RestNFeController {
 		
 		try {        	
         	String estado = chave.substring(0,2);                    
-            String urlStatus = URLSefazConsultaStatus.getURLPorUF(Integer.valueOf(estado),Integer.valueOf(ambiente));                        
+            String urlStatus = URLSefazConsultaSituacao.getURLPorUF(Integer.valueOf(estado),Integer.valueOf(ambiente));                        
             String certificado = PropertiesHelper.getInstance().getKey("certificado");
             String senha  = PropertiesHelper.getInstance().getKey("senha");            
             InputStream in = new FileInputStream(certificado);                          
@@ -76,7 +79,7 @@ public class RestNFeController {
 		
 	}
 	
-	@Path("/nfe/gerarChave/")
+	@Path("/nfe/gerarChave/{cUF}/{cnpj}/{serie}/{nNf}")
 	public void gerarChave(String cUF,String cnpj,String serie,String nNF){		
 		ChaveAcessoNFe chaveAcessoNFe = new ChaveAcessoNFe();		
 		result.use(Results.xml()).from(chaveAcessoNFe.gerarChave(cUF, cnpj, serie, nNF)).serialize();				
@@ -106,6 +109,20 @@ public class RestNFeController {
 	        	        
 	        String resultadoSEFAZ = nFeEmissaoService.emissao(xml, codigoEstado, url);	        	        
 	        
+	        	        
+	        
+	        String workdir = PropertiesHelper.getInstance().getKey("xmldir");
+	        
+	        File file = new File(workdir+File.pathSeparator+nfe.getInfNFe().getId()+".xml");
+	        
+	        if(file.isFile()){
+	        	SimpleDateFormat dateFormat = new SimpleDateFormat("ddmmyyyyHHMMss");
+	        	file.renameTo(new File(nfe.getInfNFe().getId()+dateFormat.format(new Date())));
+	        }else{
+	        	
+	        }	        
+	        
+	        
 	        result.use(Results.xml()).from(resultadoSEFAZ).serialize();
         
 		} catch (Exception e) {
@@ -113,6 +130,7 @@ public class RestNFeController {
 		}
 		
 	}
+		
 	
 	@Path("/nfe/retorno/{ambiente}/{protocolo}/{estado}")
 	public void retornoEmissao(String ambiente, String protocolo,String estado){
@@ -128,7 +146,7 @@ public class RestNFeController {
         AutenticadorCert autenticadorCert = new AutenticadorCert();            
         autenticadorCert.preparaAmbiente(in, senha.toCharArray());     
 		
-		String retorno = retEmissaoService.obterRetornoEmissao(protocolo, url, ambiente, estado);
+		String retorno = retEmissaoService.obterRetornoEmissao(protocolo, url, ambiente, estado);							
 		
 		result.use(Results.xml()).from(retorno).serialize();
 		

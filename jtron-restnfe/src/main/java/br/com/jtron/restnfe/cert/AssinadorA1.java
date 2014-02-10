@@ -2,13 +2,9 @@ package br.com.jtron.restnfe.cert;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
@@ -56,7 +52,7 @@ import org.xml.sax.SAXException;
 public class AssinadorA1 {  
 		
     private static final String NFE = "NFe";  
-    private static final String MFE = "evento";    
+    //private static final String MFE = "evento";    
   
     private PrivateKey privateKey;  
     private KeyInfo keyInfo;  
@@ -74,7 +70,7 @@ public class AssinadorA1 {
              * Assinando o XML de Lote da NF-e 
              * fileEnviNFe = Caminho do Arquivo XML (EnviNFe) gerado; 
              */    
-            xmlEnviNFeAssinado = assinarXMLsCertfificadoA1.assinaEnviMDe(  
+            xmlEnviNFeAssinado = assinarXMLsCertfificadoA1.assinaEnviNFe(  
                     xmlEnviNFe, caminhoDoCertificadoDoCliente, senhaDoCertificadoDoCliente);
             
                       
@@ -91,7 +87,7 @@ public class AssinadorA1 {
     
     
     
- public static String assinarMDe(String xmlEnviNFe) {
+/* public static String assinarMDe(String xmlEnviNFe) {
     	
     	String xmlEnviNFeAssinado = null;
     	
@@ -100,11 +96,11 @@ public class AssinadorA1 {
             String senhaDoCertificadoDoCliente = "gkosistlog2012a1";  
             AssinadorA1 assinarXMLsCertfificadoA1 = new AssinadorA1();  
   
-            /** 
+            *//** 
              * Assinando o XML de Lote da NF-e 
              * fileEnviNFe = Caminho do Arquivo XML (EnviNFe) gerado; 
-             */    
-            xmlEnviNFeAssinado = assinarXMLsCertfificadoA1.assinaEnviMDe (  
+             *//*    
+            xmlEnviNFeAssinado = assinarXMLsCertfificadoA1.assinaEnvi (  
                     xmlEnviNFe, caminhoDoCertificadoDoCliente, senhaDoCertificadoDoCliente);
             
                       
@@ -116,7 +112,7 @@ public class AssinadorA1 {
         }  
         
         return xmlEnviNFeAssinado;
-    }  
+    }  */
     
     
   
@@ -135,7 +131,7 @@ public class AssinadorA1 {
     }
     
     
-    public String assinaEnviMDe(String xml, String certificado, String senha)  
+   /* public String assinaEnviMDe(String xml, String certificado, String senha)  
             throws Exception {  
         Document document = documentFactory(xml);  
         XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM");  
@@ -147,7 +143,7 @@ public class AssinadorA1 {
         }  
   
         return outputXML(document);  
-    }  
+    }  */
         
     private void assinarNFe(XMLSignatureFactory fac,  
             ArrayList<Transform> transformList, PrivateKey privateKey,  
@@ -156,6 +152,7 @@ public class AssinadorA1 {
         NodeList elements = document.getElementsByTagName("infNFe");  
         org.w3c.dom.Element el = (org.w3c.dom.Element) elements.item(indexNFe);  
         String id = el.getAttribute("Id");  
+        el.setIdAttribute("Id", true); 
   
         Reference ref = fac.newReference("#" + id,  
                 fac.newDigestMethod(DigestMethod.SHA1, null), transformList,  
@@ -175,7 +172,7 @@ public class AssinadorA1 {
     }
     
     
-    private void assinarMDe(XMLSignatureFactory fac,  
+   /* private void assinarMDe(XMLSignatureFactory fac,  
             ArrayList<Transform> transformList, PrivateKey privateKey,  
             KeyInfo ki, Document document, int indexNFe) throws Exception {  
   
@@ -183,6 +180,7 @@ public class AssinadorA1 {
         org.w3c.dom.Element el = (org.w3c.dom.Element) elements.item(indexNFe);
         //org.w3c.dom.Element el = (org.w3c.dom.Element) elements.item(indexNFe);  
         String id = el.getAttribute("Id");  
+        el.setIdAttribute("Id", true);
   
         Reference ref = fac.newReference("#" + id,  
                 fac.newDigestMethod(DigestMethod.SHA1, null), transformList,  
@@ -197,12 +195,9 @@ public class AssinadorA1 {
         XMLSignature signature = fac.newXMLSignature(si, ki);  
   
         DOMSignContext dsc = new DOMSignContext(privateKey,   
-                document.getDocumentElement().getElementsByTagName(MFE).item(indexNFe));  
+                document.getDocumentElement().getElementsByTagName().item(indexNFe));  
         signature.sign(dsc);  
-    }
-    
-    
-    
+    }*/
     
     
     
@@ -309,4 +304,4 @@ public class AssinadorA1 {
         System.out.println("| INFO: " + info);  
     }  
   
-}  
+}    

@@ -31,15 +31,15 @@ public class RestNFeTestController {
 				
 		try {
 							
-			String xml = readFile("C:\\Users\\jose.pereira\\Desktop\\35131246114864000135550010000599691607008009.xml", StandardCharsets.UTF_8);
+			String xml = readFile("C:\\Users\\jose.pereira\\Desktop\\33140217715809000100550010000000011597807407-nfe.xml", StandardCharsets.UTF_8);
 			
 			ChaveAcessoNFe chaveAcessoNFe = new ChaveAcessoNFe();		
-			String chave = chaveAcessoNFe.gerarChave("35", "31334600000110", "1", "1");
+			String chave = chaveAcessoNFe.gerarChave("33", "17715809000100", "1", "1");
 			
 			char dv = chave.charAt(46);
 			String nf = chave.substring(38, 46); 
 			
-			xml = EditaXMLNFe.alteraXML(xml, chave, String.valueOf(dv), nf, 1, "2");
+			xml = EditaXMLNFe.alteraXML(xml, chave, String.valueOf(dv), nf, 1, "2","1");
 			
 			result.redirectTo(RestNFeController.class).emitirNFe(xml, "2");
 			
