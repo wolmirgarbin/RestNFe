@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,6 +14,8 @@ import javax.xml.bind.Unmarshaller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.interceptor.download.ByteArrayDownload;
+import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.view.Results;
 import br.com.jtron.restnfe.cert.AssinadorA1;
 import br.com.jtron.restnfe.cert.AutenticadorCert;
@@ -29,7 +32,6 @@ import br.inf.portalfiscal.www.nfe.wsdl.nfeconsulta2.ConsultaProtocoloService;
 import br.inf.portalfiscal.www.nfe.wsdl.nferecepcao2.NFeEmissaoService;
 import br.inf.portalfiscal.www.nfe.wsdl.nferetrecepcao2.NfeRetEmissaoService;
 import br.inf.portalfiscal.www.nfe.wsdl.nfestatusservico2.ConsultaService;
-import br.inf.portalfiscal.www.nfe.wsdl.nfestatusservico2.NfeStatusServico2Stub.NfeDadosMsg;
 
 @Resource
 public class RestNFeController {
@@ -112,8 +114,7 @@ public class RestNFeController {
 	        	        	        
 	        boolean processando = true;								
 			int status = 1;
-			String retorno = null;
-			boolean erroRetorno = false;			
+			String retorno = null;					
 			while(processando){		
 				retorno = retornoEmissao(ambiente,protocolo,codigoEstado);
 				System.out.println(retorno);
@@ -123,18 +124,16 @@ public class RestNFeController {
 					continue;
 				}			
 				try {
-					Thread.sleep(5000L);
+					Thread.sleep(2000L);
 				} catch (InterruptedException e) {
-					e.printStackTrace();					
-					erroRetorno = true;
+					e.printStackTrace();
 					result.use(Results.xml()).from(retorno).serialize();					
 				}						
 			}
 	        	    
-			if(status==100){				
-				resultadoSEFAZ = resultadoSEFAZ.concat(retorno);				
+			if(status==100){						
 				NFeDAO nFeDAO = new NFeDAO();
-				nFeDAO.salvar(chave, resultadoSEFAZ);						        
+				nFeDAO.salvar(chave.replace("NFe", ""), xml,retorno);						        
 			}
 			
 			result.use(Results.xml()).from(retorno).serialize();
@@ -145,6 +144,24 @@ public class RestNFeController {
 		}
 		
 	}
+	
+	@Path("/nfe/download/{chave}")
+	public Download downloadXML(String chave){
+
+		NFeDAO nFeDAO = new NFeDAO();
+		
+		String xml = nFeDAO.obterXmlPorChave(chave);
+		
+		try {
+			return new ByteArrayDownload(xml.getBytes("UTF-8") , "application/octet-stream", "Evento_MDE-"+chave+".xml" );
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
+	
 			
 	public String retornoEmissao(String ambiente, String protocolo,String estado){
 		

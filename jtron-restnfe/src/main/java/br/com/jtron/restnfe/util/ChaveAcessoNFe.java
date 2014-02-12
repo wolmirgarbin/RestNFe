@@ -19,7 +19,7 @@ public class ChaveAcessoNFe {
             chave.append(lpadTo(cnpj.replaceAll("\\D",""), 14, '0'));  
             chave.append(lpadTo(mod, 2, '0'));  
             chave.append(lpadTo(serie, 3, '0'));  
-            chave.append(lpadTo(String.valueOf(nNF), 9, '0'));  
+            chave.append(lpadTo(nNF, 9, '0'));  
             chave.append(lpadTo(tpEmis, 1, '0'));  
             chave.append(lpadTo(obterCNF(), 8, '0'));  
             chave.append(modulo11(chave.toString()));  
