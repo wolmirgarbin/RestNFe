@@ -6,44 +6,47 @@
 //
 
 
-package br.com.gko.entidade.envio;
+package br.com.jtron.restnfe.entidade.envio;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
- * <p>Java class for SignatureValueType complex type.
+ * <p>Java class for KeyInfoType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="SignatureValueType">
- *   &lt;simpleContent>
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>base64Binary">
+ * &lt;complexType name="KeyInfoType">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="X509Data" type="{http://www.w3.org/2000/09/xmldsig#}X509DataType"/>
+ *       &lt;/sequence>
  *       &lt;attribute name="Id" type="{http://www.w3.org/2001/XMLSchema}ID" />
- *     &lt;/extension>
- *   &lt;/simpleContent>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SignatureValueType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = {
-    "value"
+@XmlType(name = "KeyInfoType", namespace = "http://www.w3.org/2000/09/xmldsig#", propOrder = {
+    "x509Data"
 })
-public class SignatureValueType {
+public class KeyInfoType {
 
-    @XmlValue
-    protected byte[] value;
+    @XmlElement(name = "X509Data", required = true)
+    protected X509DataType x509Data;
     @XmlAttribute(name = "Id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
@@ -51,25 +54,27 @@ public class SignatureValueType {
     protected String id;
 
     /**
-     * Gets the value of the value property.
+     * Gets the value of the x509Data property.
      * 
      * @return
      *     possible object is
-     *     byte[]
+     *     {@link X509DataType }
+     *     
      */
-    public byte[] getValue() {
-        return value;
+    public X509DataType getX509Data() {
+        return x509Data;
     }
 
     /**
-     * Sets the value of the value property.
+     * Sets the value of the x509Data property.
      * 
      * @param value
      *     allowed object is
-     *     byte[]
+     *     {@link X509DataType }
+     *     
      */
-    public void setValue(byte[] value) {
-        this.value = value;
+    public void setX509Data(X509DataType value) {
+        this.x509Data = value;
     }
 
     /**

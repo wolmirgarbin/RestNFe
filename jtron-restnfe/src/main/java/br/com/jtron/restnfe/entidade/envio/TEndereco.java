@@ -6,7 +6,7 @@
 //
 
 
-package br.com.gko.entidade.envio;
+package br.com.jtron.restnfe.entidade.envio;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,21 +15,17 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * Tipo Dados do Local de Retirada ou Entrega // 24/10/08 - tamanho mínimo // v2.0
+ * Tipo Dados do Endereço  // 24/10/08 - tamanho mínimo
  * 
- * <p>Java class for TLocal complex type.
+ * <p>Java class for TEndereco complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="TLocal">
+ * &lt;complexType name="TEndereco">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;choice>
- *           &lt;element name="CNPJ" type="{http://www.portalfiscal.inf.br/nfe}TCnpjOpc"/>
- *           &lt;element name="CPF" type="{http://www.portalfiscal.inf.br/nfe}TCpf"/>
- *         &lt;/choice>
  *         &lt;element name="xLgr">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.portalfiscal.inf.br/nfe}TString">
@@ -72,6 +68,31 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;/simpleType>
  *         &lt;/element>
  *         &lt;element name="UF" type="{http://www.portalfiscal.inf.br/nfe}TUf"/>
+ *         &lt;element name="CEP" minOccurs="0">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;whiteSpace value="preserve"/>
+ *               &lt;pattern value="[0-9]{8}"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
+ *         &lt;element name="cPais" type="{http://www.portalfiscal.inf.br/nfe}Tpais" minOccurs="0"/>
+ *         &lt;element name="xPais" minOccurs="0">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.portalfiscal.inf.br/nfe}TString">
+ *               &lt;maxLength value="60"/>
+ *               &lt;minLength value="2"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
+ *         &lt;element name="fone" minOccurs="0">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;whiteSpace value="preserve"/>
+ *               &lt;pattern value="[0-9]{6,14}"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -81,23 +102,21 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TLocal", propOrder = {
-    "cnpj",
-    "cpf",
+@XmlType(name = "TEndereco", propOrder = {
     "xLgr",
     "nro",
     "xCpl",
     "xBairro",
     "cMun",
     "xMun",
-    "uf"
+    "uf",
+    "cep",
+    "cPais",
+    "xPais",
+    "fone"
 })
-public class TLocal {
+public class TEndereco {
 
-    @XmlElement(name = "CNPJ")
-    protected String cnpj;
-    @XmlElement(name = "CPF")
-    protected String cpf;
     @XmlElement(required = true)
     protected String xLgr;
     @XmlElement(required = true)
@@ -111,54 +130,11 @@ public class TLocal {
     protected String xMun;
     @XmlElement(name = "UF", required = true)
     protected TUf uf;
-
-    /**
-     * Gets the value of the cnpj property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCNPJ() {
-        return cnpj;
-    }
-
-    /**
-     * Sets the value of the cnpj property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCNPJ(String value) {
-        this.cnpj = value;
-    }
-
-    /**
-     * Gets the value of the cpf property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCPF() {
-        return cpf;
-    }
-
-    /**
-     * Sets the value of the cpf property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCPF(String value) {
-        this.cpf = value;
-    }
+    @XmlElement(name = "CEP")
+    protected String cep;
+    protected String cPais;
+    protected String xPais;
+    protected String fone;
 
     /**
      * Gets the value of the xLgr property.
@@ -326,6 +302,102 @@ public class TLocal {
      */
     public void setUF(TUf value) {
         this.uf = value;
+    }
+
+    /**
+     * Gets the value of the cep property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCEP() {
+        return cep;
+    }
+
+    /**
+     * Sets the value of the cep property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCEP(String value) {
+        this.cep = value;
+    }
+
+    /**
+     * Gets the value of the cPais property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCPais() {
+        return cPais;
+    }
+
+    /**
+     * Sets the value of the cPais property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCPais(String value) {
+        this.cPais = value;
+    }
+
+    /**
+     * Gets the value of the xPais property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getXPais() {
+        return xPais;
+    }
+
+    /**
+     * Sets the value of the xPais property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setXPais(String value) {
+        this.xPais = value;
+    }
+
+    /**
+     * Gets the value of the fone property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFone() {
+        return fone;
+    }
+
+    /**
+     * Sets the value of the fone property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFone(String value) {
+        this.fone = value;
     }
 
 }

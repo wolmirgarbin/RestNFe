@@ -6,7 +6,7 @@
 //
 
 
-package br.com.gko.entidade.envio;
+package br.com.jtron.restnfe.entidade.envio;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

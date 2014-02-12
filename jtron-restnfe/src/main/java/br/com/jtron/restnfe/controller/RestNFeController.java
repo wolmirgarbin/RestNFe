@@ -1,12 +1,9 @@
 package br.com.jtron.restnfe.controller;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.StringReader;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,9 +14,10 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
-import br.com.gko.entidade.envio.TNFe;
 import br.com.jtron.restnfe.cert.AssinadorA1;
 import br.com.jtron.restnfe.cert.AutenticadorCert;
+import br.com.jtron.restnfe.dao.NFeDAO;
+import br.com.jtron.restnfe.entidade.envio.TNFe;
 import br.com.jtron.restnfe.sefaz.URLSefazConsultaSituacao;
 import br.com.jtron.restnfe.sefaz.URLSefazConsultaStatus;
 import br.com.jtron.restnfe.sefaz.URLSefazNFeRecepcao;
@@ -31,6 +29,7 @@ import br.inf.portalfiscal.www.nfe.wsdl.nfeconsulta2.ConsultaProtocoloService;
 import br.inf.portalfiscal.www.nfe.wsdl.nferecepcao2.NFeEmissaoService;
 import br.inf.portalfiscal.www.nfe.wsdl.nferetrecepcao2.NfeRetEmissaoService;
 import br.inf.portalfiscal.www.nfe.wsdl.nfestatusservico2.ConsultaService;
+import br.inf.portalfiscal.www.nfe.wsdl.nfestatusservico2.NfeStatusServico2Stub.NfeDadosMsg;
 
 @Resource
 public class RestNFeController {
@@ -107,33 +106,47 @@ public class RestNFeController {
             
 	        String url = URLSefazNFeRecepcao.getURLPorUF(Integer.valueOf(codigoEstado), Integer.valueOf(ambiente));
 	        	        
-	        String resultadoSEFAZ = nFeEmissaoService.emissao(xml, codigoEstado, url);	        	        
+	        String resultadoSEFAZ = nFeEmissaoService.emissao(xml, codigoEstado, url);
 	        
-	        	        
-	        
-	        String workdir = PropertiesHelper.getInstance().getKey("xmldir");
-	        
-	        File file = new File(workdir+File.pathSeparator+nfe.getInfNFe().getId()+".xml");
-	        
-	        if(file.isFile()){
-	        	SimpleDateFormat dateFormat = new SimpleDateFormat("ddmmyyyyHHMMss");
-	        	file.renameTo(new File(nfe.getInfNFe().getId()+dateFormat.format(new Date())));
-	        }else{
-	        	
-	        }	        
-	        
-	        
-	        result.use(Results.xml()).from(resultadoSEFAZ).serialize();
+	        String protocolo = lerPotocoloEnvioLoto(resultadoSEFAZ);
+	        	        	        
+	        boolean processando = true;								
+			int status = 1;
+			String retorno = null;
+			boolean erroRetorno = false;			
+			while(processando){		
+				retorno = retornoEmissao(ambiente,protocolo,codigoEstado);
+				System.out.println(retorno);
+				status = lerStatusProcessamento(retorno);
+				if(status!=105){
+					processando = false;
+					continue;
+				}			
+				try {
+					Thread.sleep(5000L);
+				} catch (InterruptedException e) {
+					e.printStackTrace();					
+					erroRetorno = true;
+					result.use(Results.xml()).from(retorno).serialize();					
+				}						
+			}
+	        	    
+			if(status==100){				
+				resultadoSEFAZ = resultadoSEFAZ.concat(retorno);				
+				NFeDAO nFeDAO = new NFeDAO();
+				nFeDAO.salvar(chave, resultadoSEFAZ);						        
+			}
+			
+			result.use(Results.xml()).from(retorno).serialize();
         
 		} catch (Exception e) {
 			e.printStackTrace();
+			result.use(Results.xml()).from(e.getMessage()).serialize();
 		}
 		
 	}
-		
-	
-	@Path("/nfe/retorno/{ambiente}/{protocolo}/{estado}")
-	public void retornoEmissao(String ambiente, String protocolo,String estado){
+			
+	public String retornoEmissao(String ambiente, String protocolo,String estado){
 		
 		try {
 		NfeRetEmissaoService retEmissaoService = new NfeRetEmissaoService();			
@@ -148,11 +161,13 @@ public class RestNFeController {
 		
 		String retorno = retEmissaoService.obterRetornoEmissao(protocolo, url, ambiente, estado);							
 		
-		result.use(Results.xml()).from(retorno).serialize();
+		return retorno;
 		
 		} catch (FileNotFoundException e) {			
 			e.printStackTrace();
 		}
+		
+		return null;
 		
 	}
 	
@@ -173,6 +188,25 @@ public class RestNFeController {
             }            
         return nfe;
     }  
+	
+	
+	private static String lerPotocoloEnvioLoto(String xml){		
+		final Pattern pattern = Pattern.compile("<nRec>(.+?)</nRec>");
+		final Matcher matcher = pattern.matcher(xml);
+		matcher.find();
+		return matcher.group(1);										
+	}
+	
+	public static Integer lerStatusProcessamento(String xml){
+				
+		if(xml.indexOf("<protNFe versao=\"2.00\">")>=1){
+			xml = xml.substring(xml.indexOf("<protNFe versao=\"2.00\">"));
+		}						
+		final Pattern pattern = Pattern.compile("<cStat>(.+?)</cStat>");
+		final Matcher matcher = pattern.matcher(xml);
+		matcher.find();
+		return Integer.valueOf(matcher.group(1));						  
+	}
 	
 	
 }

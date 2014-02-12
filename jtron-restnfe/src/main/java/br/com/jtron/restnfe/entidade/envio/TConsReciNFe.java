@@ -6,7 +6,7 @@
 //
 
 
-package br.com.gko.entidade.envio;
+package br.com.jtron.restnfe.entidade.envio;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,19 +16,19 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- *  Tipo da NF-e processada
+ * Tipo Pedido de Consulta do Recido do Lote de Notas Fiscais Eletrônicas
  * 
- * <p>Java class for TNfeProc complex type.
+ * <p>Java class for TConsReciNFe complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="TNfeProc">
+ * &lt;complexType name="TConsReciNFe">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="NFe" type="{http://www.portalfiscal.inf.br/nfe}TNFe"/>
- *         &lt;element name="protNFe" type="{http://www.portalfiscal.inf.br/nfe}TProtNFe"/>
+ *         &lt;element name="tpAmb" type="{http://www.portalfiscal.inf.br/nfe}TAmb"/>
+ *         &lt;element name="nRec" type="{http://www.portalfiscal.inf.br/nfe}TRec"/>
  *       &lt;/sequence>
  *       &lt;attribute name="versao" use="required" type="{http://www.portalfiscal.inf.br/nfe}TVerNFe" />
  *     &lt;/restriction>
@@ -39,65 +39,65 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TNfeProc", propOrder = {
-    "nFe",
-    "protNFe"
+@XmlType(name = "TConsReciNFe", propOrder = {
+    "tpAmb",
+    "nRec"
 })
-public class TNfeProc {
+public class TConsReciNFe {
 
-    @XmlElement(name = "NFe", required = true)
-    protected TNFe nFe;
     @XmlElement(required = true)
-    protected TProtNFe protNFe;
+    protected String tpAmb;
+    @XmlElement(required = true)
+    protected String nRec;
     @XmlAttribute(name = "versao", required = true)
     protected String versao;
 
     /**
-     * Gets the value of the nFe property.
+     * Gets the value of the tpAmb property.
      * 
      * @return
      *     possible object is
-     *     {@link TNFe }
+     *     {@link String }
      *     
      */
-    public TNFe getNFe() {
-        return nFe;
+    public String getTpAmb() {
+        return tpAmb;
     }
 
     /**
-     * Sets the value of the nFe property.
+     * Sets the value of the tpAmb property.
      * 
      * @param value
      *     allowed object is
-     *     {@link TNFe }
+     *     {@link String }
      *     
      */
-    public void setNFe(TNFe value) {
-        this.nFe = value;
+    public void setTpAmb(String value) {
+        this.tpAmb = value;
     }
 
     /**
-     * Gets the value of the protNFe property.
+     * Gets the value of the nRec property.
      * 
      * @return
      *     possible object is
-     *     {@link TProtNFe }
+     *     {@link String }
      *     
      */
-    public TProtNFe getProtNFe() {
-        return protNFe;
+    public String getNRec() {
+        return nRec;
     }
 
     /**
-     * Sets the value of the protNFe property.
+     * Sets the value of the nRec property.
      * 
      * @param value
      *     allowed object is
-     *     {@link TProtNFe }
+     *     {@link String }
      *     
      */
-    public void setProtNFe(TProtNFe value) {
-        this.protNFe = value;
+    public void setNRec(String value) {
+        this.nRec = value;
     }
 
     /**

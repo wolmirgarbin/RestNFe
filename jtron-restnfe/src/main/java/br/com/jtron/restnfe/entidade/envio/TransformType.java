@@ -6,7 +6,7 @@
 //
 
 
-package br.com.gko.entidade.envio;
+package br.com.jtron.restnfe.entidade.envio;
 
 import java.util.ArrayList;
 import java.util.List;
