@@ -28,6 +28,7 @@ import br.com.jtron.restnfe.sefaz.URLSefazNFeRetorno;
 import br.com.jtron.restnfe.util.ChaveAcessoNFe;
 import br.com.jtron.restnfe.util.PropertiesHelper;
 import br.com.jtron.restnfe.util.ResultSEFAZUtil;
+import br.com.jtron.restnfe.util.XmlUtil;
 import br.inf.portalfiscal.www.nfe.wsdl.nfeconsulta2.ConsultaProtocoloService;
 import br.inf.portalfiscal.www.nfe.wsdl.nferecepcao2.NFeEmissaoService;
 import br.inf.portalfiscal.www.nfe.wsdl.nferetrecepcao2.NfeRetEmissaoService;
@@ -92,7 +93,7 @@ public class RestNFeController {
 		
 		try {
 		
-			TNFe nfe = lerDownload(ResultSEFAZUtil.lerXMLNfeDownload(xml));		
+			TNFe nfe = XmlUtil.lerDownload(ResultSEFAZUtil.lerXMLNfeDownload(xml));		
 			
 			String chave = nfe.getInfNFe().getId();
 			String codigoEstado = chave.substring(3, 5);
@@ -110,7 +111,7 @@ public class RestNFeController {
 	        	        
 	        String resultadoSEFAZ = nFeEmissaoService.emissao(xml, codigoEstado, url);
 	        
-	        String protocolo = lerPotocoloEnvioLoto(resultadoSEFAZ);
+	        String protocolo = XmlUtil.lerPotocoloEnvioLoto(resultadoSEFAZ);
 	        	        	        
 	        boolean processando = true;								
 			int status = 1;
@@ -118,7 +119,7 @@ public class RestNFeController {
 			while(processando){		
 				retorno = retornoEmissao(ambiente,protocolo,codigoEstado);
 				System.out.println(retorno);
-				status = lerStatusProcessamento(retorno);
+				status = XmlUtil.lerStatusProcessamento(retorno);
 				if(status!=105){
 					processando = false;
 					continue;
@@ -145,7 +146,7 @@ public class RestNFeController {
 		
 	}
 	
-	@Path("/nfe/download/{chave}")
+	@Path("/nfe/download/xml/{chave}")
 	public Download downloadXML(String chave){
 
 		NFeDAO nFeDAO = new NFeDAO();
@@ -161,6 +162,26 @@ public class RestNFeController {
 		return null;
 		
 	}
+	
+	/*@Path("/nfe/download/pdf/{chave}")
+	public Download downloadPDF(String chave){
+
+		NFeDAO nFeDAO = new NFeDAO();
+		
+		String xml = nFeDAO.obterXmlPorChave(chave);
+		
+		try {
+			return new ByteArrayDownload(xml.getBytes("UTF-8") , "application/octet-stream", "Evento_MDE-"+chave+".xml" );			
+			//OutputStream os = new FileOutputStream("C:\hello.pdf");  
+			//Html2Pdf.convert("<h1 style=\"color:red\">Hello PDF</h1>", os);           
+			//os.close();			
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}*/
 	
 			
 	public String retornoEmissao(String ambiente, String protocolo,String estado){
@@ -189,41 +210,6 @@ public class RestNFeController {
 	}
 	
 	
-	private static TNFe lerDownload(String xml) throws Exception {  		
-        TNFe nfe = null;		       	        	       
-            if(xml!=null){                
-                JAXBContext context;
-                Unmarshaller unmarshaller;                       
-                Matcher m = Pattern.compile("(?s)(?=<NFe).*?>.*?(?<=</NFe>)").matcher(xml);
-                while(m.find()){            	                
-                    String strNFe = m.group(0);            	            	
-                    strNFe = strNFe.replace("<NFe>", "<NFe xmlns=\"http://www.portalfiscal.inf.br/nfe\">");            	            	
-                    context = JAXBContext.newInstance(TNFe.class);    
-                    unmarshaller = context.createUnmarshaller();                            
-                    nfe = (TNFe) unmarshaller.unmarshal(new StringReader(strNFe));                            
-                }         
-            }            
-        return nfe;
-    }  
-	
-	
-	private static String lerPotocoloEnvioLoto(String xml){		
-		final Pattern pattern = Pattern.compile("<nRec>(.+?)</nRec>");
-		final Matcher matcher = pattern.matcher(xml);
-		matcher.find();
-		return matcher.group(1);										
-	}
-	
-	public static Integer lerStatusProcessamento(String xml){
-				
-		if(xml.indexOf("<protNFe versao=\"2.00\">")>=1){
-			xml = xml.substring(xml.indexOf("<protNFe versao=\"2.00\">"));
-		}						
-		final Pattern pattern = Pattern.compile("<cStat>(.+?)</cStat>");
-		final Matcher matcher = pattern.matcher(xml);
-		matcher.find();
-		return Integer.valueOf(matcher.group(1));						  
-	}
-	
+	  
 	
 }

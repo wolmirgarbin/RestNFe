@@ -2611,9 +2611,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class TNFe {
 	
     @XmlElement(required = true)
-    protected TNFe.InfNFe infNFe;
+    public TNFe.InfNFe infNFe;
     @XmlElement(name = "Signature", namespace = "http://www.w3.org/2000/09/xmldsig#", required = true)
-    protected SignatureType signature;
+    public SignatureType signature;
 
     /**
      * Gets the value of the infNFe property.
@@ -5250,31 +5250,31 @@ public class TNFe {
     public static class InfNFe {
 
         @XmlElement(required = true)
-        protected TNFe.InfNFe.Ide ide;
+        public TNFe.InfNFe.Ide ide;
         @XmlElement(required = true)
-        protected TNFe.InfNFe.Emit emit;
-        protected TNFe.InfNFe.Avulsa avulsa;
+        public TNFe.InfNFe.Emit emit;
+        public TNFe.InfNFe.Avulsa avulsa;
         @XmlElement(required = true)
-        protected TNFe.InfNFe.Dest dest;
-        protected TLocal retirada;
-        protected TLocal entrega;
+        public TNFe.InfNFe.Dest dest;
+        public TLocal retirada;
+        public TLocal entrega;
         @XmlElement(required = true)
-        protected List<TNFe.InfNFe.Det> det;
+        public List<TNFe.InfNFe.Det> det;
 		@XmlElement(required = true)
-        protected TNFe.InfNFe.Total total;
+        public TNFe.InfNFe.Total total;
         @XmlElement(required = true)
-        protected TNFe.InfNFe.Transp transp;
-        protected TNFe.InfNFe.Cobr cobr;
-        protected TNFe.InfNFe.InfAdic infAdic;
-        protected TNFe.InfNFe.Exporta exporta;
-        protected TNFe.InfNFe.Compra compra;
-        protected TNFe.InfNFe.Cana cana;
+        public TNFe.InfNFe.Transp transp;
+        public TNFe.InfNFe.Cobr cobr;
+        public TNFe.InfNFe.InfAdic infAdic;
+        public TNFe.InfNFe.Exporta exporta;
+        public TNFe.InfNFe.Compra compra;
+        public TNFe.InfNFe.Cana cana;
         @XmlAttribute(name = "versao", required = true)
-        protected String versao;
+        public String versao;
         @XmlAttribute(name = "Id", required = true)
         @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
         @XmlID
-        protected String id;
+        public String id;
 
         /**
          * Gets the value of the ide property.
@@ -5762,24 +5762,24 @@ public class TNFe {
         public static class Avulsa {
 
             @XmlElement(name = "CNPJ", required = true)
-            protected String cnpj;
+            public String cnpj;
             @XmlElement(required = true)
-            protected String xOrgao;
+            public String xOrgao;
             @XmlElement(required = true)
-            protected String matr;
+            public String matr;
             @XmlElement(required = true)
-            protected String xAgente;
-            protected String fone;
+            public String xAgente;
+            public String fone;
             @XmlElement(name = "UF", required = true)
-            protected TUfEmi uf;
+            public TUfEmi uf;
             @XmlElement(name = "nDAR")
-            protected String ndar;
-            protected String dEmi;
+            public String ndar;
+            public String dEmi;
             @XmlElement(name = "vDAR")
-            protected String vdar;
+            public String vdar;
             @XmlElement(required = true)
-            protected String repEmi;
-            protected String dPag;
+            public String repEmi;
+            public String dPag;
 
             /**
              * Gets the value of the cnpj property.
@@ -6142,24 +6142,24 @@ public class TNFe {
         public static class Cana {
 
             @XmlElement(required = true)
-            protected String safra;
+            public String safra;
             @XmlElement(required = true)
-            protected String ref;
+            public String ref;
             @XmlElement(required = true)
-            protected List<TNFe.InfNFe.Cana.ForDia> forDia;
+            public List<TNFe.InfNFe.Cana.ForDia> forDia;
             @XmlElement(required = true)
-            protected String qTotMes;
+            public String qTotMes;
             @XmlElement(required = true)
-            protected String qTotAnt;
+            public String qTotAnt;
             @XmlElement(required = true)
-            protected String qTotGer;
-            protected List<TNFe.InfNFe.Cana.Deduc> deduc;
+            public String qTotGer;
+            public List<TNFe.InfNFe.Cana.Deduc> deduc;
             @XmlElement(required = true)
-            protected String vFor;
+            public String vFor;
             @XmlElement(required = true)
-            protected String vTotDed;
+            public String vTotDed;
             @XmlElement(required = true)
-            protected String vLiqFor;
+            public String vLiqFor;
 
             /**
              * Gets the value of the safra property.
@@ -6447,9 +6447,9 @@ public class TNFe {
             public static class Deduc {
 
                 @XmlElement(required = true)
-                protected String xDed;
+                public String xDed;
                 @XmlElement(required = true)
-                protected String vDed;
+                public String vDed;
 
                 /**
                  * Gets the value of the xDed property.
@@ -6536,9 +6536,9 @@ public class TNFe {
             public static class ForDia {
 
                 @XmlElement(required = true)
-                protected String qtde;
+                public String qtde;
                 @XmlAttribute(name = "dia", required = true)
-                protected String dia;
+                public String dia;
 
                 /**
                  * Gets the value of the qtde property.
@@ -6659,8 +6659,8 @@ public class TNFe {
         })
         public static class Cobr {
 
-            protected TNFe.InfNFe.Cobr.Fat fat;
-            protected List<TNFe.InfNFe.Cobr.Dup> dup;
+            public TNFe.InfNFe.Cobr.Fat fat;
+            public List<TNFe.InfNFe.Cobr.Dup> dup;
 
             /**
              * Gets the value of the fat property.
@@ -6752,9 +6752,9 @@ public class TNFe {
             })
             public static class Dup {
 
-                protected String nDup;
-                protected String dVenc;
-                protected String vDup;
+                public String nDup;
+                public String dVenc;
+                public String vDup;
 
                 /**
                  * Gets the value of the nDup property.
@@ -6869,10 +6869,10 @@ public class TNFe {
             })
             public static class Fat {
 
-                protected String nFat;
-                protected String vOrig;
-                protected String vDesc;
-                protected String vLiq;
+                public String nFat;
+                public String vOrig;
+                public String vDesc;
+                public String vLiq;
 
                 /**
                  * Gets the value of the nFat property.
@@ -7026,9 +7026,9 @@ public class TNFe {
         public static class Compra {
 
             @XmlElement(name = "xNEmp")
-            protected String xnEmp;
-            protected String xPed;
-            protected String xCont;
+            public String xnEmp;
+            public String xPed;
+            public String xCont;
 
             /**
              * Gets the value of the xnEmp property.
@@ -7167,18 +7167,18 @@ public class TNFe {
         public static class Dest {
 
             @XmlElement(name = "CNPJ")
-            protected String cnpj;
+            public String cnpj;
             @XmlElement(name = "CPF")
-            protected String cpf;
+            public String cpf;
             @XmlElement(required = true)
-            protected String xNome;
+            public String xNome;
             @XmlElement(required = true)
-            protected TEndereco enderDest;
+            public TEndereco enderDest;
             @XmlElement(name = "IE", nillable = true)
-            protected String ie;
+            public String ie;
             @XmlElement(name = "ISUF")
-            protected String isuf;
-            protected String email;
+            public String isuf;
+            public String email;
 
             /**
              * Gets the value of the cnpj property.
@@ -9004,12 +9004,12 @@ public class TNFe {
         public static class Det {
 
             @XmlElement(required = true)
-            protected TNFe.InfNFe.Det.Prod prod;
+            public TNFe.InfNFe.Det.Prod prod;
             @XmlElement(required = true)
-            protected TNFe.InfNFe.Det.Imposto imposto;
-            protected String infAdProd;
+            public TNFe.InfNFe.Det.Imposto imposto;
+            public String infAdProd;
             @XmlAttribute(name = "nItem", required = true)
-            protected String nItem;
+            public String nItem;
 
             /**
              * Gets the value of the prod property.
@@ -10234,21 +10234,21 @@ public class TNFe {
             public static class Imposto {
 
                 @XmlElement(name = "ICMS")
-                protected TNFe.InfNFe.Det.Imposto.ICMS icms;
+                public TNFe.InfNFe.Det.Imposto.ICMS icms;
                 @XmlElement(name = "IPI")
-                protected TNFe.InfNFe.Det.Imposto.IPI ipi;
+                public TNFe.InfNFe.Det.Imposto.IPI ipi;
                 @XmlElement(name = "II")
-                protected TNFe.InfNFe.Det.Imposto.II ii;
+                public TNFe.InfNFe.Det.Imposto.II ii;
                 @XmlElement(name = "ISSQN")
-                protected TNFe.InfNFe.Det.Imposto.ISSQN issqn;
+                public TNFe.InfNFe.Det.Imposto.ISSQN issqn;
                 @XmlElement(name = "PIS", required = true)
-                protected TNFe.InfNFe.Det.Imposto.PIS pis;
+                public TNFe.InfNFe.Det.Imposto.PIS pis;
                 @XmlElement(name = "PISST")
-                protected TNFe.InfNFe.Det.Imposto.PISST pisst;
+                public TNFe.InfNFe.Det.Imposto.PISST pisst;
                 @XmlElement(name = "COFINS", required = true)
-                protected TNFe.InfNFe.Det.Imposto.COFINS cofins;
+                public TNFe.InfNFe.Det.Imposto.COFINS cofins;
                 @XmlElement(name = "COFINSST")
-                protected TNFe.InfNFe.Det.Imposto.COFINSST cofinsst;
+                public TNFe.InfNFe.Det.Imposto.COFINSST cofinsst;
 
                 /**
                  * Gets the value of the icms property.
@@ -10587,13 +10587,13 @@ public class TNFe {
                 public static class COFINS {
 
                     @XmlElement(name = "COFINSAliq")
-                    protected TNFe.InfNFe.Det.Imposto.COFINS.COFINSAliq cofinsAliq;
+                    public TNFe.InfNFe.Det.Imposto.COFINS.COFINSAliq cofinsAliq;
                     @XmlElement(name = "COFINSQtde")
-                    protected TNFe.InfNFe.Det.Imposto.COFINS.COFINSQtde cofinsQtde;
+                    public TNFe.InfNFe.Det.Imposto.COFINS.COFINSQtde cofinsQtde;
                     @XmlElement(name = "COFINSNT")
-                    protected TNFe.InfNFe.Det.Imposto.COFINS.COFINSNT cofinsnt;
+                    public TNFe.InfNFe.Det.Imposto.COFINS.COFINSNT cofinsnt;
                     @XmlElement(name = "COFINSOutr")
-                    protected TNFe.InfNFe.Det.Imposto.COFINS.COFINSOutr cofinsOutr;
+                    public TNFe.InfNFe.Det.Imposto.COFINS.COFINSOutr cofinsOutr;
 
                     /**
                      * Gets the value of the cofinsAliq property.
@@ -10732,13 +10732,13 @@ public class TNFe {
                     public static class COFINSAliq {
 
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(name = "vBC", required = true)
-                        protected String vbc;
+                        public String vbc;
                         @XmlElement(name = "pCOFINS", required = true)
-                        protected String pcofins;
+                        public String pcofins;
                         @XmlElement(name = "vCOFINS", required = true)
-                        protected String vcofins;
+                        public String vcofins;
 
                         /**
                          * Gets the value of the cst property.
@@ -10876,7 +10876,7 @@ public class TNFe {
                     public static class COFINSNT {
 
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
 
                         /**
                          * Gets the value of the cst property.
@@ -10977,16 +10977,16 @@ public class TNFe {
                     public static class COFINSOutr {
 
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(name = "vBC")
-                        protected String vbc;
+                        public String vbc;
                         @XmlElement(name = "pCOFINS")
-                        protected String pcofins;
+                        public String pcofins;
                         @XmlElement(name = "qBCProd")
-                        protected String qbcProd;
-                        protected String vAliqProd;
+                        public String qbcProd;
+                        public String vAliqProd;
                         @XmlElement(name = "vCOFINS", required = true)
-                        protected String vcofins;
+                        public String vcofins;
 
                         /**
                          * Gets the value of the cst property.
@@ -11173,13 +11173,13 @@ public class TNFe {
                     public static class COFINSQtde {
 
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(name = "qBCProd", required = true)
-                        protected String qbcProd;
+                        public String qbcProd;
                         @XmlElement(required = true)
-                        protected String vAliqProd;
+                        public String vAliqProd;
                         @XmlElement(name = "vCOFINS", required = true)
-                        protected String vcofins;
+                        public String vcofins;
 
                         /**
                          * Gets the value of the cst property.
@@ -11322,14 +11322,14 @@ public class TNFe {
                 public static class COFINSST {
 
                     @XmlElement(name = "vBC")
-                    protected String vbc;
+                    public String vbc;
                     @XmlElement(name = "pCOFINS")
-                    protected String pcofins;
+                    public String pcofins;
                     @XmlElement(name = "qBCProd")
-                    protected String qbcProd;
-                    protected String vAliqProd;
+                    public String qbcProd;
+                    public String vAliqProd;
                     @XmlElement(name = "vCOFINS", required = true)
-                    protected String vcofins;
+                    public String vcofins;
 
                     /**
                      * Gets the value of the vbc property.
@@ -12136,39 +12136,39 @@ public class TNFe {
                 public static class ICMS {
 
                     @XmlElement(name = "ICMS00")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMS00 icms00;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS00 icms00;
                     @XmlElement(name = "ICMS10")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMS10 icms10;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS10 icms10;
                     @XmlElement(name = "ICMS20")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMS20 icms20;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS20 icms20;
                     @XmlElement(name = "ICMS30")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMS30 icms30;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS30 icms30;
                     @XmlElement(name = "ICMS40")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMS40 icms40;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS40 icms40;
                     @XmlElement(name = "ICMS51")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMS51 icms51;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS51 icms51;
                     @XmlElement(name = "ICMS60")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMS60 icms60;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS60 icms60;
                     @XmlElement(name = "ICMS70")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMS70 icms70;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS70 icms70;
                     @XmlElement(name = "ICMS90")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMS90 icms90;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMS90 icms90;
                     @XmlElement(name = "ICMSPart")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMSPart icmsPart;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMSPart icmsPart;
                     @XmlElement(name = "ICMSST")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMSST icmsst;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMSST icmsst;
                     @XmlElement(name = "ICMSSN101")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN101 icmssn101;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN101 icmssn101;
                     @XmlElement(name = "ICMSSN102")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN102 icmssn102;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN102 icmssn102;
                     @XmlElement(name = "ICMSSN201")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN201 icmssn201;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN201 icmssn201;
                     @XmlElement(name = "ICMSSN202")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN202 icmssn202;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN202 icmssn202;
                     @XmlElement(name = "ICMSSN500")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN500 icmssn500;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN500 icmssn500;
                     @XmlElement(name = "ICMSSN900")
-                    protected TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN900 icmssn900;
+                    public TNFe.InfNFe.Det.Imposto.ICMS.ICMSSN900 icmssn900;
 
                     /**
                      * Gets the value of the icms00 property.
@@ -12632,17 +12632,17 @@ public class TNFe {
                     public static class ICMS00 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(required = true)
-                        protected String modBC;
+                        public String modBC;
                         @XmlElement(name = "vBC", required = true)
-                        protected String vbc;
+                        public String vbc;
                         @XmlElement(name = "pICMS", required = true)
-                        protected String picms;
+                        public String picms;
                         @XmlElement(name = "vICMS", required = true)
-                        protected String vicms;
+                        public String vicms;
 
                         /**
                          * Gets the value of the orig property.
@@ -12868,28 +12868,28 @@ public class TNFe {
                     public static class ICMS10 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(required = true)
-                        protected String modBC;
+                        public String modBC;
                         @XmlElement(name = "vBC", required = true)
-                        protected String vbc;
+                        public String vbc;
                         @XmlElement(name = "pICMS", required = true)
-                        protected String picms;
+                        public String picms;
                         @XmlElement(name = "vICMS", required = true)
-                        protected String vicms;
+                        public String vicms;
                         @XmlElement(required = true)
-                        protected String modBCST;
+                        public String modBCST;
                         @XmlElement(name = "pMVAST")
-                        protected String pmvast;
-                        protected String pRedBCST;
+                        public String pmvast;
+                        public String pRedBCST;
                         @XmlElement(name = "vBCST", required = true)
-                        protected String vbcst;
+                        public String vbcst;
                         @XmlElement(name = "pICMSST", required = true)
-                        protected String picmsst;
+                        public String picmsst;
                         @XmlElement(name = "vICMSST", required = true)
-                        protected String vicmsst;
+                        public String vicmsst;
 
                         /**
                          * Gets the value of the orig property.
@@ -13237,19 +13237,19 @@ public class TNFe {
                     public static class ICMS20 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(required = true)
-                        protected String modBC;
+                        public String modBC;
                         @XmlElement(required = true)
-                        protected String pRedBC;
+                        public String pRedBC;
                         @XmlElement(name = "vBC", required = true)
-                        protected String vbc;
+                        public String vbc;
                         @XmlElement(name = "pICMS", required = true)
-                        protected String picms;
+                        public String picms;
                         @XmlElement(name = "vICMS", required = true)
-                        protected String vicms;
+                        public String vicms;
 
                         /**
                          * Gets the value of the orig property.
@@ -13481,20 +13481,20 @@ public class TNFe {
                     public static class ICMS30 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(required = true)
-                        protected String modBCST;
+                        public String modBCST;
                         @XmlElement(name = "pMVAST")
-                        protected String pmvast;
-                        protected String pRedBCST;
+                        public String pmvast;
+                        public String pRedBCST;
                         @XmlElement(name = "vBCST", required = true)
-                        protected String vbcst;
+                        public String vbcst;
                         @XmlElement(name = "pICMSST", required = true)
-                        protected String picmsst;
+                        public String picmsst;
                         @XmlElement(name = "vICMSST", required = true)
-                        protected String vicmsst;
+                        public String vicmsst;
 
                         /**
                          * Gets the value of the orig property.
@@ -13749,12 +13749,12 @@ public class TNFe {
                     public static class ICMS40 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(name = "vICMS")
-                        protected String vicms;
-                        protected String motDesICMS;
+                        public String vicms;
+                        public String motDesICMS;
 
                         /**
                          * Gets the value of the orig property.
@@ -13910,17 +13910,17 @@ public class TNFe {
                     public static class ICMS51 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
-                        protected String modBC;
-                        protected String pRedBC;
+                        public String cst;
+                        public String modBC;
+                        public String pRedBC;
                         @XmlElement(name = "vBC")
-                        protected String vbc;
+                        public String vbc;
                         @XmlElement(name = "pICMS")
-                        protected String picms;
+                        public String picms;
                         @XmlElement(name = "vICMS")
-                        protected String vicms;
+                        public String vicms;
 
                         /**
                          * Gets the value of the orig property.
@@ -14134,13 +14134,13 @@ public class TNFe {
                     public static class ICMS60 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(name = "vBCSTRet")
-                        protected String vbcstRet;
+                        public String vbcstRet;
                         @XmlElement(name = "vICMSSTRet")
-                        protected String vicmsstRet;
+                        public String vicmsstRet;
 
                         /**
                          * Gets the value of the orig property.
@@ -14320,30 +14320,30 @@ public class TNFe {
                     public static class ICMS70 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(required = true)
-                        protected String modBC;
+                        public String modBC;
                         @XmlElement(required = true)
-                        protected String pRedBC;
+                        public String pRedBC;
                         @XmlElement(name = "vBC", required = true)
-                        protected String vbc;
+                        public String vbc;
                         @XmlElement(name = "pICMS", required = true)
-                        protected String picms;
+                        public String picms;
                         @XmlElement(name = "vICMS", required = true)
-                        protected String vicms;
+                        public String vicms;
                         @XmlElement(required = true)
-                        protected String modBCST;
+                        public String modBCST;
                         @XmlElement(name = "pMVAST")
-                        protected String pmvast;
-                        protected String pRedBCST;
+                        public String pmvast;
+                        public String pRedBCST;
                         @XmlElement(name = "vBCST", required = true)
-                        protected String vbcst;
+                        public String vbcst;
                         @XmlElement(name = "pICMSST", required = true)
-                        protected String picmsst;
+                        public String picmsst;
                         @XmlElement(name = "vICMSST", required = true)
-                        protected String vicmsst;
+                        public String vicmsst;
 
                         /**
                          * Gets the value of the orig property.
@@ -14743,27 +14743,27 @@ public class TNFe {
                     public static class ICMS90 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
-                        protected String modBC;
+                        public String cst;
+                        public String modBC;
                         @XmlElement(name = "vBC")
-                        protected String vbc;
-                        protected String pRedBC;
+                        public String vbc;
+                        public String pRedBC;
                         @XmlElement(name = "pICMS")
-                        protected String picms;
+                        public String picms;
                         @XmlElement(name = "vICMS")
-                        protected String vicms;
-                        protected String modBCST;
+                        public String vicms;
+                        public String modBCST;
                         @XmlElement(name = "pMVAST")
-                        protected String pmvast;
-                        protected String pRedBCST;
+                        public String pmvast;
+                        public String pRedBCST;
                         @XmlElement(name = "vBCST")
-                        protected String vbcst;
+                        public String vbcst;
                         @XmlElement(name = "pICMSST")
-                        protected String picmsst;
+                        public String picmsst;
                         @XmlElement(name = "vICMSST")
-                        protected String vicmsst;
+                        public String vicmsst;
 
                         /**
                          * Gets the value of the orig property.
@@ -15164,33 +15164,33 @@ public class TNFe {
                     public static class ICMSPart {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(required = true)
-                        protected String modBC;
+                        public String modBC;
                         @XmlElement(name = "vBC", required = true)
-                        protected String vbc;
-                        protected String pRedBC;
+                        public String vbc;
+                        public String pRedBC;
                         @XmlElement(name = "pICMS", required = true)
-                        protected String picms;
+                        public String picms;
                         @XmlElement(name = "vICMS", required = true)
-                        protected String vicms;
+                        public String vicms;
                         @XmlElement(required = true)
-                        protected String modBCST;
+                        public String modBCST;
                         @XmlElement(name = "pMVAST")
-                        protected String pmvast;
-                        protected String pRedBCST;
+                        public String pmvast;
+                        public String pRedBCST;
                         @XmlElement(name = "vBCST", required = true)
-                        protected String vbcst;
+                        public String vbcst;
                         @XmlElement(name = "pICMSST", required = true)
-                        protected String picmsst;
+                        public String picmsst;
                         @XmlElement(name = "vICMSST", required = true)
-                        protected String vicmsst;
+                        public String vicmsst;
                         @XmlElement(name = "pBCOp", required = true)
-                        protected String pbcOp;
+                        public String pbcOp;
                         @XmlElement(name = "UFST", required = true)
-                        protected TUf ufst;
+                        public TUf ufst;
 
                         /**
                          * Gets the value of the orig property.
@@ -15594,13 +15594,13 @@ public class TNFe {
                     public static class ICMSSN101 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CSOSN", required = true)
-                        protected String csosn;
+                        public String csosn;
                         @XmlElement(required = true)
-                        protected String pCredSN;
+                        public String pCredSN;
                         @XmlElement(required = true)
-                        protected String vCredICMSSN;
+                        public String vCredICMSSN;
 
                         /**
                          * Gets the value of the orig property.
@@ -15739,9 +15739,9 @@ public class TNFe {
                     public static class ICMSSN102 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CSOSN", required = true)
-                        protected String csosn;
+                        public String csosn;
 
                         /**
                          * Gets the value of the orig property.
@@ -15857,24 +15857,24 @@ public class TNFe {
                     public static class ICMSSN201 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CSOSN", required = true)
-                        protected String csosn;
+                        public String csosn;
                         @XmlElement(required = true)
-                        protected String modBCST;
+                        public String modBCST;
                         @XmlElement(name = "pMVAST")
-                        protected String pmvast;
-                        protected String pRedBCST;
+                        public String pmvast;
+                        public String pRedBCST;
                         @XmlElement(name = "vBCST", required = true)
-                        protected String vbcst;
+                        public String vbcst;
                         @XmlElement(name = "pICMSST", required = true)
-                        protected String picmsst;
+                        public String picmsst;
                         @XmlElement(name = "vICMSST", required = true)
-                        protected String vicmsst;
+                        public String vicmsst;
                         @XmlElement(required = true)
-                        protected String pCredSN;
+                        public String pCredSN;
                         @XmlElement(required = true)
-                        protected String vCredICMSSN;
+                        public String vCredICMSSN;
 
                         /**
                          * Gets the value of the orig property.
@@ -16179,20 +16179,20 @@ public class TNFe {
                     public static class ICMSSN202 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CSOSN", required = true)
-                        protected String csosn;
+                        public String csosn;
                         @XmlElement(required = true)
-                        protected String modBCST;
+                        public String modBCST;
                         @XmlElement(name = "pMVAST")
-                        protected String pmvast;
-                        protected String pRedBCST;
+                        public String pmvast;
+                        public String pRedBCST;
                         @XmlElement(name = "vBCST", required = true)
-                        protected String vbcst;
+                        public String vbcst;
                         @XmlElement(name = "pICMSST", required = true)
-                        protected String picmsst;
+                        public String picmsst;
                         @XmlElement(name = "vICMSST", required = true)
-                        protected String vicmsst;
+                        public String vicmsst;
 
                         /**
                          * Gets the value of the orig property.
@@ -16430,13 +16430,13 @@ public class TNFe {
                     public static class ICMSSN500 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CSOSN", required = true)
-                        protected String csosn;
+                        public String csosn;
                         @XmlElement(name = "vBCSTRet")
-                        protected String vbcstRet;
+                        public String vbcstRet;
                         @XmlElement(name = "vICMSSTRet")
-                        protected String vicmsstRet;
+                        public String vicmsstRet;
 
                         /**
                          * Gets the value of the orig property.
@@ -16626,29 +16626,29 @@ public class TNFe {
                     public static class ICMSSN900 {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CSOSN", required = true)
-                        protected String csosn;
-                        protected String modBC;
+                        public String csosn;
+                        public String modBC;
                         @XmlElement(name = "vBC")
-                        protected String vbc;
-                        protected String pRedBC;
+                        public String vbc;
+                        public String pRedBC;
                         @XmlElement(name = "pICMS")
-                        protected String picms;
+                        public String picms;
                         @XmlElement(name = "vICMS")
-                        protected String vicms;
-                        protected String modBCST;
+                        public String vicms;
+                        public String modBCST;
                         @XmlElement(name = "pMVAST")
-                        protected String pmvast;
-                        protected String pRedBCST;
+                        public String pmvast;
+                        public String pRedBCST;
                         @XmlElement(name = "vBCST")
-                        protected String vbcst;
+                        public String vbcst;
                         @XmlElement(name = "pICMSST")
-                        protected String picmsst;
+                        public String picmsst;
                         @XmlElement(name = "vICMSST")
-                        protected String vicmsst;
-                        protected String pCredSN;
-                        protected String vCredICMSSN;
+                        public String vicmsst;
+                        public String pCredSN;
+                        public String vCredICMSSN;
 
                         /**
                          * Gets the value of the orig property.
@@ -17056,17 +17056,17 @@ public class TNFe {
                     public static class ICMSST {
 
                         @XmlElement(required = true)
-                        protected String orig;
+                        public String orig;
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(name = "vBCSTRet", required = true)
-                        protected String vbcstRet;
+                        public String vbcstRet;
                         @XmlElement(name = "vICMSSTRet", required = true)
-                        protected String vicmsstRet;
+                        public String vicmsstRet;
                         @XmlElement(name = "vBCSTDest", required = true)
-                        protected String vbcstDest;
+                        public String vbcstDest;
                         @XmlElement(name = "vICMSSTDest", required = true)
-                        protected String vicmsstDest;
+                        public String vicmsstDest;
 
                         /**
                          * Gets the value of the orig property.
@@ -17249,13 +17249,13 @@ public class TNFe {
                 public static class II {
 
                     @XmlElement(name = "vBC", required = true)
-                    protected String vbc;
+                    public String vbc;
                     @XmlElement(required = true)
-                    protected String vDespAdu;
+                    public String vDespAdu;
                     @XmlElement(name = "vII", required = true)
-                    protected String vii;
+                    public String vii;
                     @XmlElement(name = "vIOF", required = true)
-                    protected String viof;
+                    public String viof;
 
                     /**
                      * Gets the value of the vbc property.
@@ -17480,17 +17480,17 @@ public class TNFe {
                 })
                 public static class IPI {
 
-                    protected String clEnq;
+                    public String clEnq;
                     @XmlElement(name = "CNPJProd")
-                    protected String cnpjProd;
-                    protected String cSelo;
-                    protected String qSelo;
+                    public String cnpjProd;
+                    public String cSelo;
+                    public String qSelo;
                     @XmlElement(required = true)
-                    protected String cEnq;
+                    public String cEnq;
                     @XmlElement(name = "IPITrib")
-                    protected TNFe.InfNFe.Det.Imposto.IPI.IPITrib ipiTrib;
+                    public TNFe.InfNFe.Det.Imposto.IPI.IPITrib ipiTrib;
                     @XmlElement(name = "IPINT")
-                    protected TNFe.InfNFe.Det.Imposto.IPI.IPINT ipint;
+                    public TNFe.InfNFe.Det.Imposto.IPI.IPINT ipint;
 
                     /**
                      * Gets the value of the clEnq property.
@@ -17703,7 +17703,7 @@ public class TNFe {
                     public static class IPINT {
 
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
 
                         /**
                          * Gets the value of the cst property.
@@ -17784,15 +17784,15 @@ public class TNFe {
                     public static class IPITrib {
 
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(name = "vBC")
-                        protected String vbc;
+                        public String vbc;
                         @XmlElement(name = "pIPI")
-                        protected String pipi;
-                        protected String qUnid;
-                        protected String vUnid;
+                        public String pipi;
+                        public String qUnid;
+                        public String vUnid;
                         @XmlElement(name = "vIPI", required = true)
-                        protected String vipi;
+                        public String vipi;
 
                         /**
                          * Gets the value of the cst property.
@@ -17989,17 +17989,17 @@ public class TNFe {
                 public static class ISSQN {
 
                     @XmlElement(name = "vBC", required = true)
-                    protected String vbc;
+                    public String vbc;
                     @XmlElement(required = true)
-                    protected String vAliq;
+                    public String vAliq;
                     @XmlElement(name = "vISSQN", required = true)
-                    protected String vissqn;
+                    public String vissqn;
                     @XmlElement(required = true)
-                    protected String cMunFG;
+                    public String cMunFG;
                     @XmlElement(required = true)
-                    protected String cListServ;
+                    public String cListServ;
                     @XmlElement(required = true)
-                    protected String cSitTrib;
+                    public String cSitTrib;
 
                     /**
                      * Gets the value of the vbc property.
@@ -18293,13 +18293,13 @@ public class TNFe {
                 public static class PIS {
 
                     @XmlElement(name = "PISAliq")
-                    protected TNFe.InfNFe.Det.Imposto.PIS.PISAliq pisAliq;
+                    public TNFe.InfNFe.Det.Imposto.PIS.PISAliq pisAliq;
                     @XmlElement(name = "PISQtde")
-                    protected TNFe.InfNFe.Det.Imposto.PIS.PISQtde pisQtde;
+                    public TNFe.InfNFe.Det.Imposto.PIS.PISQtde pisQtde;
                     @XmlElement(name = "PISNT")
-                    protected TNFe.InfNFe.Det.Imposto.PIS.PISNT pisnt;
+                    public TNFe.InfNFe.Det.Imposto.PIS.PISNT pisnt;
                     @XmlElement(name = "PISOutr")
-                    protected TNFe.InfNFe.Det.Imposto.PIS.PISOutr pisOutr;
+                    public TNFe.InfNFe.Det.Imposto.PIS.PISOutr pisOutr;
 
                     /**
                      * Gets the value of the pisAliq property.
@@ -18438,13 +18438,13 @@ public class TNFe {
                     public static class PISAliq {
 
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(name = "vBC", required = true)
-                        protected String vbc;
+                        public String vbc;
                         @XmlElement(name = "pPIS", required = true)
-                        protected String ppis;
+                        public String ppis;
                         @XmlElement(name = "vPIS", required = true)
-                        protected String vpis;
+                        public String vpis;
 
                         /**
                          * Gets the value of the cst property.
@@ -18582,7 +18582,7 @@ public class TNFe {
                     public static class PISNT {
 
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
 
                         /**
                          * Gets the value of the cst property.
@@ -18683,16 +18683,16 @@ public class TNFe {
                     public static class PISOutr {
 
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(name = "vBC")
-                        protected String vbc;
+                        public String vbc;
                         @XmlElement(name = "pPIS")
-                        protected String ppis;
+                        public String ppis;
                         @XmlElement(name = "qBCProd")
-                        protected String qbcProd;
-                        protected String vAliqProd;
+                        public String qbcProd;
+                        public String vAliqProd;
                         @XmlElement(name = "vPIS", required = true)
-                        protected String vpis;
+                        public String vpis;
 
                         /**
                          * Gets the value of the cst property.
@@ -18880,13 +18880,13 @@ public class TNFe {
                     public static class PISQtde {
 
                         @XmlElement(name = "CST", required = true)
-                        protected String cst;
+                        public String cst;
                         @XmlElement(name = "qBCProd", required = true)
-                        protected String qbcProd;
+                        public String qbcProd;
                         @XmlElement(required = true)
-                        protected String vAliqProd;
+                        public String vAliqProd;
                         @XmlElement(name = "vPIS", required = true)
-                        protected String vpis;
+                        public String vpis;
 
                         /**
                          * Gets the value of the cst property.
@@ -19029,14 +19029,14 @@ public class TNFe {
                 public static class PISST {
 
                     @XmlElement(name = "vBC")
-                    protected String vbc;
+                    public String vbc;
                     @XmlElement(name = "pPIS")
-                    protected String ppis;
+                    public String ppis;
                     @XmlElement(name = "qBCProd")
-                    protected String qbcProd;
-                    protected String vAliqProd;
+                    public String qbcProd;
+                    public String vAliqProd;
                     @XmlElement(name = "vPIS", required = true)
-                    protected String vpis;
+                    public String vpis;
 
                     /**
                      * Gets the value of the vbc property.
@@ -19709,47 +19709,47 @@ public class TNFe {
             public static class Prod {
 
                 @XmlElement(required = true)
-                protected String cProd;
+                public String cProd;
                 @XmlElement(name = "cEAN", required = true)
-                protected String cean;
+                public String cean;
                 @XmlElement(required = true)
-                protected String xProd;
+                public String xProd;
                 @XmlElement(name = "NCM", required = true)
-                protected String ncm;
+                public String ncm;
                 @XmlElement(name = "EXTIPI")
-                protected String extipi;
+                public String extipi;
                 @XmlElement(name = "CFOP", required = true)
-                protected String cfop;
+                public String cfop;
                 @XmlElement(required = true)
-                protected String uCom;
+                public String uCom;
                 @XmlElement(required = true)
-                protected String qCom;
+                public String qCom;
                 @XmlElement(required = true)
-                protected String vUnCom;
+                public String vUnCom;
                 @XmlElement(required = true)
-                protected String vProd;
+                public String vProd;
                 @XmlElement(name = "cEANTrib", required = true)
-                protected String ceanTrib;
+                public String ceanTrib;
                 @XmlElement(required = true)
-                protected String uTrib;
+                public String uTrib;
                 @XmlElement(required = true)
-                protected String qTrib;
+                public String qTrib;
                 @XmlElement(required = true)
-                protected String vUnTrib;
-                protected String vFrete;
-                protected String vSeg;
-                protected String vDesc;
-                protected String vOutro;
+                public String vUnTrib;
+                public String vFrete;
+                public String vSeg;
+                public String vDesc;
+                public String vOutro;
                 @XmlElement(required = true)
-                protected String indTot;
+                public String indTot;
                 @XmlElement(name = "DI")
-                protected List<TNFe.InfNFe.Det.Prod.DI> di;
-                protected String xPed;
-                protected String nItemPed;
-                protected TNFe.InfNFe.Det.Prod.VeicProd veicProd;
-                protected List<TNFe.InfNFe.Det.Prod.Med> med;
-                protected List<TNFe.InfNFe.Det.Prod.Arma> arma;
-                protected TNFe.InfNFe.Det.Prod.Comb comb;
+                public List<TNFe.InfNFe.Det.Prod.DI> di;
+                public String xPed;
+                public String nItemPed;
+                public TNFe.InfNFe.Det.Prod.VeicProd veicProd;
+                public List<TNFe.InfNFe.Det.Prod.Med> med;
+                public List<TNFe.InfNFe.Det.Prod.Arma> arma;
+                public TNFe.InfNFe.Det.Prod.Comb comb;
 
                 /**
                  * Gets the value of the cProd property.
@@ -20452,13 +20452,13 @@ public class TNFe {
                 public static class Arma {
 
                     @XmlElement(required = true)
-                    protected String tpArma;
+                    public String tpArma;
                     @XmlElement(required = true)
-                    protected String nSerie;
+                    public String nSerie;
                     @XmlElement(required = true)
-                    protected String nCano;
+                    public String nCano;
                     @XmlElement(required = true)
-                    protected String descr;
+                    public String descr;
 
                     /**
                      * Gets the value of the tpArma property.
@@ -20619,14 +20619,14 @@ public class TNFe {
                 public static class Comb {
 
                     @XmlElement(required = true)
-                    protected String cProdANP;
+                    public String cProdANP;
                     @XmlElement(name = "CODIF")
-                    protected String codif;
-                    protected String qTemp;
+                    public String codif;
+                    public String qTemp;
                     @XmlElement(name = "UFCons", required = true)
-                    protected TUf ufCons;
+                    public TUf ufCons;
                     @XmlElement(name = "CIDE")
-                    protected TNFe.InfNFe.Det.Prod.Comb.CIDE cide;
+                    public TNFe.InfNFe.Det.Prod.Comb.CIDE cide;
 
                     /**
                      * Gets the value of the cProdANP property.
@@ -20779,11 +20779,11 @@ public class TNFe {
                     public static class CIDE {
 
                         @XmlElement(name = "qBCProd", required = true)
-                        protected String qbcProd;
+                        public String qbcProd;
                         @XmlElement(required = true)
-                        protected String vAliqProd;
+                        public String vAliqProd;
                         @XmlElement(name = "vCIDE", required = true)
-                        protected String vcide;
+                        public String vcide;
 
                         /**
                          * Gets the value of the qbcProd property.
@@ -20955,19 +20955,19 @@ public class TNFe {
                 public static class DI {
 
                     @XmlElement(name = "nDI", required = true)
-                    protected String ndi;
+                    public String ndi;
                     @XmlElement(name = "dDI", required = true)
-                    protected String ddi;
+                    public String ddi;
                     @XmlElement(required = true)
-                    protected String xLocDesemb;
+                    public String xLocDesemb;
                     @XmlElement(name = "UFDesemb", required = true)
-                    protected TUfEmi ufDesemb;
+                    public TUfEmi ufDesemb;
                     @XmlElement(required = true)
-                    protected String dDesemb;
+                    public String dDesemb;
                     @XmlElement(required = true)
-                    protected String cExportador;
+                    public String cExportador;
                     @XmlElement(required = true)
-                    protected List<TNFe.InfNFe.Det.Prod.DI.Adi> adi;
+                    public List<TNFe.InfNFe.Det.Prod.DI.Adi> adi;
 
                     /**
                      * Gets the value of the ndi property.
@@ -21196,12 +21196,12 @@ public class TNFe {
                     public static class Adi {
 
                         @XmlElement(required = true)
-                        protected String nAdicao;
+                        public String nAdicao;
                         @XmlElement(required = true)
-                        protected String nSeqAdic;
+                        public String nSeqAdic;
                         @XmlElement(required = true)
-                        protected String cFabricante;
-                        protected String vDescDI;
+                        public String cFabricante;
+                        public String vDescDI;
 
                         /**
                          * Gets the value of the nAdicao property.
@@ -21345,15 +21345,15 @@ public class TNFe {
                 public static class Med {
 
                     @XmlElement(required = true)
-                    protected String nLote;
+                    public String nLote;
                     @XmlElement(required = true)
-                    protected String qLote;
+                    public String qLote;
                     @XmlElement(required = true)
-                    protected String dFab;
+                    public String dFab;
                     @XmlElement(required = true)
-                    protected String dVal;
+                    public String dVal;
                     @XmlElement(name = "vPMC", required = true)
-                    protected String vpmc;
+                    public String vpmc;
 
                     /**
                      * Gets the value of the nLote property.
@@ -21733,53 +21733,53 @@ public class TNFe {
                 public static class VeicProd {
 
                     @XmlElement(required = true)
-                    protected String tpOp;
+                    public String tpOp;
                     @XmlElement(required = true)
-                    protected String chassi;
+                    public String chassi;
                     @XmlElement(required = true)
-                    protected String cCor;
+                    public String cCor;
                     @XmlElement(required = true)
-                    protected String xCor;
+                    public String xCor;
                     @XmlElement(required = true)
-                    protected String pot;
+                    public String pot;
                     @XmlElement(required = true)
-                    protected String cilin;
+                    public String cilin;
                     @XmlElement(required = true)
-                    protected String pesoL;
+                    public String pesoL;
                     @XmlElement(required = true)
-                    protected String pesoB;
+                    public String pesoB;
                     @XmlElement(required = true)
-                    protected String nSerie;
+                    public String nSerie;
                     @XmlElement(required = true)
-                    protected String tpComb;
+                    public String tpComb;
                     @XmlElement(required = true)
-                    protected String nMotor;
+                    public String nMotor;
                     @XmlElement(name = "CMT", required = true)
-                    protected String cmt;
+                    public String cmt;
                     @XmlElement(required = true)
-                    protected String dist;
+                    public String dist;
                     @XmlElement(required = true)
-                    protected String anoMod;
+                    public String anoMod;
                     @XmlElement(required = true)
-                    protected String anoFab;
+                    public String anoFab;
                     @XmlElement(required = true)
-                    protected String tpPint;
+                    public String tpPint;
                     @XmlElement(required = true)
-                    protected String tpVeic;
+                    public String tpVeic;
                     @XmlElement(required = true)
-                    protected String espVeic;
+                    public String espVeic;
                     @XmlElement(name = "VIN", required = true)
-                    protected String vin;
+                    public String vin;
                     @XmlElement(required = true)
-                    protected String condVeic;
+                    public String condVeic;
                     @XmlElement(required = true)
-                    protected String cMod;
+                    public String cMod;
                     @XmlElement(required = true)
-                    protected String cCorDENATRAN;
+                    public String cCorDENATRAN;
                     @XmlElement(required = true)
-                    protected String lota;
+                    public String lota;
                     @XmlElement(required = true)
-                    protected String tpRest;
+                    public String tpRest;
 
                     /**
                      * Gets the value of the tpOp property.
@@ -22449,24 +22449,24 @@ public class TNFe {
         public static class Emit {
 
             @XmlElement(name = "CNPJ")
-            protected String cnpj;
+            public String cnpj;
             @XmlElement(name = "CPF")
-            protected String cpf;
+            public String cpf;
             @XmlElement(required = true)
-            protected String xNome;
-            protected String xFant;
+            public String xNome;
+            public String xFant;
             @XmlElement(required = true)
-            protected TEnderEmi enderEmit;
+            public TEnderEmi enderEmit;
             @XmlElement(name = "IE", required = true)
-            protected String ie;
+            public String ie;
             @XmlElement(name = "IEST")
-            protected String iest;
+            public String iest;
             @XmlElement(name = "IM")
-            protected String im;
+            public String im;
             @XmlElement(name = "CNAE")
-            protected String cnae;
+            public String cnae;
             @XmlElement(name = "CRT", required = true)
-            protected String crt;
+            public String crt;
 
             /**
              * Gets the value of the cnpj property.
@@ -22746,9 +22746,9 @@ public class TNFe {
         public static class Exporta {
 
             @XmlElement(name = "UFEmbarq", required = true)
-            protected TUf ufEmbarq;
+            public TUf ufEmbarq;
             @XmlElement(required = true)
-            protected String xLocEmbarq;
+            public String xLocEmbarq;
 
             /**
              * Gets the value of the ufEmbarq property.
@@ -23065,45 +23065,45 @@ public class TNFe {
         public static class Ide {
 
             @XmlElement(name = "cUF", required = true)
-            protected String cuf;
+            public String cuf;
             @XmlElement(name = "cNF", required = true)
-            protected String cnf;
+            public String cnf;
             @XmlElement(required = true)
-            protected String natOp;
+            public String natOp;
             @XmlElement(required = true)
-            protected String indPag;
+            public String indPag;
             @XmlElement(required = true)
-            protected String mod;
+            public String mod;
             @XmlElement(required = true)
-            protected String serie;
+            public String serie;
             @XmlElement(name = "nNF", required = true)
-            protected String nnf;
+            public String nnf;
             @XmlElement(required = true)
-            protected String dEmi;
-            protected String dSaiEnt;
-            protected String hSaiEnt;
+            public String dEmi;
+            public String dSaiEnt;
+            public String hSaiEnt;
             @XmlElement(required = true)
-            protected String tpNF;
+            public String tpNF;
             @XmlElement(required = true)
-            protected String cMunFG;
+            public String cMunFG;
             @XmlElement(name = "NFref")
-            protected List<TNFe.InfNFe.Ide.NFref> nFref;
+            public List<TNFe.InfNFe.Ide.NFref> nFref;
             @XmlElement(required = true)
-            protected String tpImp;
+            public String tpImp;
             @XmlElement(required = true)
-            protected String tpEmis;
+            public String tpEmis;
             @XmlElement(name = "cDV", required = true)
-            protected String cdv;
+            public String cdv;
             @XmlElement(required = true)
-            protected String tpAmb;
+            public String tpAmb;
             @XmlElement(required = true)
-            protected String finNFe;
+            public String finNFe;
             @XmlElement(required = true)
-            protected String procEmi;
+            public String procEmi;
             @XmlElement(required = true)
-            protected String verProc;
-            protected String dhCont;
-            protected String xJust;
+            public String verProc;
+            public String dhCont;
+            public String xJust;
 
             /**
              * Gets the value of the cuf property.
@@ -23770,11 +23770,11 @@ public class TNFe {
             })
             public static class NFref {
 
-                protected String refNFe;
-                protected TNFe.InfNFe.Ide.NFref.RefNF refNF;
-                protected TNFe.InfNFe.Ide.NFref.RefNFP refNFP;
-                protected String refCTe;
-                protected TNFe.InfNFe.Ide.NFref.RefECF refECF;
+                public String refNFe;
+                public TNFe.InfNFe.Ide.NFref.RefNF refNF;
+                public TNFe.InfNFe.Ide.NFref.RefNFP refNFP;
+                public String refCTe;
+                public TNFe.InfNFe.Ide.NFref.RefECF refECF;
 
                 /**
                  * Gets the value of the refNFe property.
@@ -23950,11 +23950,11 @@ public class TNFe {
                 public static class RefECF {
 
                     @XmlElement(required = true)
-                    protected String mod;
+                    public String mod;
                     @XmlElement(name = "nECF", required = true)
-                    protected String necf;
+                    public String necf;
                     @XmlElement(name = "nCOO", required = true)
-                    protected String ncoo;
+                    public String ncoo;
 
                     /**
                      * Gets the value of the mod property.
@@ -24081,17 +24081,17 @@ public class TNFe {
                 public static class RefNF {
 
                     @XmlElement(name = "cUF", required = true)
-                    protected String cuf;
+                    public String cuf;
                     @XmlElement(name = "AAMM", required = true)
-                    protected String aamm;
+                    public String aamm;
                     @XmlElement(name = "CNPJ", required = true)
-                    protected String cnpj;
+                    public String cnpj;
                     @XmlElement(required = true)
-                    protected String mod;
+                    public String mod;
                     @XmlElement(required = true)
-                    protected String serie;
+                    public String serie;
                     @XmlElement(name = "nNF", required = true)
-                    protected String nnf;
+                    public String nnf;
 
                     /**
                      * Gets the value of the cuf property.
@@ -24297,21 +24297,21 @@ public class TNFe {
                 public static class RefNFP {
 
                     @XmlElement(name = "cUF", required = true)
-                    protected String cuf;
+                    public String cuf;
                     @XmlElement(name = "AAMM", required = true)
-                    protected String aamm;
+                    public String aamm;
                     @XmlElement(name = "CNPJ")
-                    protected String cnpj;
+                    public String cnpj;
                     @XmlElement(name = "CPF")
-                    protected String cpf;
+                    public String cpf;
                     @XmlElement(name = "IE", required = true)
-                    protected String ie;
+                    public String ie;
                     @XmlElement(required = true)
-                    protected String mod;
+                    public String mod;
                     @XmlElement(required = true)
-                    protected String serie;
+                    public String serie;
                     @XmlElement(name = "nNF", required = true)
-                    protected String nnf;
+                    public String nnf;
 
                     /**
                      * Gets the value of the cuf property.
@@ -24638,11 +24638,11 @@ public class TNFe {
         })
         public static class InfAdic {
 
-            protected String infAdFisco;
-            protected String infCpl;
-            protected List<TNFe.InfNFe.InfAdic.ObsCont> obsCont;
-            protected List<TNFe.InfNFe.InfAdic.ObsFisco> obsFisco;
-            protected List<TNFe.InfNFe.InfAdic.ProcRef> procRef;
+            public String infAdFisco;
+            public String infCpl;
+            public List<TNFe.InfNFe.InfAdic.ObsCont> obsCont;
+            public List<TNFe.InfNFe.InfAdic.ObsFisco> obsFisco;
+            public List<TNFe.InfNFe.InfAdic.ProcRef> procRef;
 
             /**
              * Gets the value of the infAdFisco property.
@@ -24821,9 +24821,9 @@ public class TNFe {
             public static class ObsCont {
 
                 @XmlElement(required = true)
-                protected String xTexto;
+                public String xTexto;
                 @XmlAttribute(name = "xCampo", required = true)
-                protected String xCampo;
+                public String xCampo;
 
                 /**
                  * Gets the value of the xTexto property.
@@ -24917,9 +24917,9 @@ public class TNFe {
             public static class ObsFisco {
 
                 @XmlElement(required = true)
-                protected String xTexto;
+                public String xTexto;
                 @XmlAttribute(name = "xCampo", required = true)
-                protected String xCampo;
+                public String xCampo;
 
                 /**
                  * Gets the value of the xTexto property.
@@ -25018,9 +25018,9 @@ public class TNFe {
             public static class ProcRef {
 
                 @XmlElement(required = true)
-                protected String nProc;
+                public String nProc;
                 @XmlElement(required = true)
-                protected String indProc;
+                public String indProc;
 
                 /**
                  * Gets the value of the nProc property.
@@ -25158,10 +25158,10 @@ public class TNFe {
         public static class Total {
 
             @XmlElement(name = "ICMSTot", required = true)
-            protected TNFe.InfNFe.Total.ICMSTot icmsTot;
+            public TNFe.InfNFe.Total.ICMSTot icmsTot;
             @XmlElement(name = "ISSQNtot")
-            protected TNFe.InfNFe.Total.ISSQNtot issqNtot;
-            protected TNFe.InfNFe.Total.RetTrib retTrib;
+            public TNFe.InfNFe.Total.ISSQNtot issqNtot;
+            public TNFe.InfNFe.Total.RetTrib retTrib;
 
             /**
              * Gets the value of the icmsTot property.
@@ -25288,33 +25288,33 @@ public class TNFe {
             public static class ICMSTot {
 
                 @XmlElement(name = "vBC", required = true)
-                protected String vbc;
+                public String vbc;
                 @XmlElement(name = "vICMS", required = true)
-                protected String vicms;
+                public String vicms;
                 @XmlElement(name = "vBCST", required = true)
-                protected String vbcst;
+                public String vbcst;
                 @XmlElement(name = "vST", required = true)
-                protected String vst;
+                public String vst;
                 @XmlElement(required = true)
-                protected String vProd;
+                public String vProd;
                 @XmlElement(required = true)
-                protected String vFrete;
+                public String vFrete;
                 @XmlElement(required = true)
-                protected String vSeg;
+                public String vSeg;
                 @XmlElement(required = true)
-                protected String vDesc;
+                public String vDesc;
                 @XmlElement(name = "vII", required = true)
-                protected String vii;
+                public String vii;
                 @XmlElement(name = "vIPI", required = true)
-                protected String vipi;
+                public String vipi;
                 @XmlElement(name = "vPIS", required = true)
-                protected String vpis;
+                public String vpis;
                 @XmlElement(name = "vCOFINS", required = true)
-                protected String vcofins;
+                public String vcofins;
                 @XmlElement(required = true)
-                protected String vOutro;
+                public String vOutro;
                 @XmlElement(name = "vNF", required = true)
-                protected String vnf;
+                public String vnf;
 
                 /**
                  * Gets the value of the vbc property.
@@ -25688,15 +25688,15 @@ public class TNFe {
             })
             public static class ISSQNtot {
 
-                protected String vServ;
+                public String vServ;
                 @XmlElement(name = "vBC")
-                protected String vbc;
+                public String vbc;
                 @XmlElement(name = "vISS")
-                protected String viss;
+                public String viss;
                 @XmlElement(name = "vPIS")
-                protected String vpis;
+                public String vpis;
                 @XmlElement(name = "vCOFINS")
-                protected String vcofins;
+                public String vcofins;
 
                 /**
                  * Gets the value of the vServ property.
@@ -25858,16 +25858,16 @@ public class TNFe {
             })
             public static class RetTrib {
 
-                protected String vRetPIS;
-                protected String vRetCOFINS;
-                protected String vRetCSLL;
+                public String vRetPIS;
+                public String vRetCOFINS;
+                public String vRetCSLL;
                 @XmlElement(name = "vBCIRRF")
-                protected String vbcirrf;
+                public String vbcirrf;
                 @XmlElement(name = "vIRRF")
-                protected String virrf;
+                public String virrf;
                 @XmlElement(name = "vBCRetPrev")
-                protected String vbcRetPrev;
-                protected String vRetPrev;
+                public String vbcRetPrev;
+                public String vRetPrev;
 
                 /**
                  * Gets the value of the vRetPIS property.
@@ -26225,14 +26225,14 @@ public class TNFe {
         public static class Transp {
 
             @XmlElement(required = true)
-            protected String modFrete;
-            protected TNFe.InfNFe.Transp.Transporta transporta;
-            protected TNFe.InfNFe.Transp.RetTransp retTransp;
-            protected TVeiculo veicTransp;
-            protected List<TVeiculo> reboque;
-            protected String vagao;
-            protected String balsa;
-            protected List<TNFe.InfNFe.Transp.Vol> vol;
+            public String modFrete;
+            public TNFe.InfNFe.Transp.Transporta transporta;
+            public TNFe.InfNFe.Transp.RetTransp retTransp;
+            public TVeiculo veicTransp;
+            public List<TVeiculo> reboque;
+            public String vagao;
+            public String balsa;
+            public List<TNFe.InfNFe.Transp.Vol> vol;
 
             /**
              * Gets the value of the modFrete property.
@@ -26473,17 +26473,17 @@ public class TNFe {
             public static class RetTransp {
 
                 @XmlElement(required = true)
-                protected String vServ;
+                public String vServ;
                 @XmlElement(name = "vBCRet", required = true)
-                protected String vbcRet;
+                public String vbcRet;
                 @XmlElement(name = "pICMSRet", required = true)
-                protected String picmsRet;
+                public String picmsRet;
                 @XmlElement(name = "vICMSRet", required = true)
-                protected String vicmsRet;
+                public String vicmsRet;
                 @XmlElement(name = "CFOP", required = true)
-                protected String cfop;
+                public String cfop;
                 @XmlElement(required = true)
-                protected String cMunFG;
+                public String cMunFG;
 
                 /**
                  * Gets the value of the vServ property.
@@ -26693,16 +26693,16 @@ public class TNFe {
             public static class Transporta {
 
                 @XmlElement(name = "CNPJ")
-                protected String cnpj;
+                public String cnpj;
                 @XmlElement(name = "CPF")
-                protected String cpf;
-                protected String xNome;
+                public String cpf;
+                public String xNome;
                 @XmlElement(name = "IE")
-                protected String ie;
-                protected String xEnder;
-                protected String xMun;
+                public String ie;
+                public String xEnder;
+                public String xMun;
                 @XmlElement(name = "UF")
-                protected TUf uf;
+                public TUf uf;
 
                 /**
                  * Gets the value of the cnpj property.
@@ -26957,13 +26957,13 @@ public class TNFe {
             })
             public static class Vol {
 
-                protected String qVol;
-                protected String esp;
-                protected String marca;
-                protected String nVol;
-                protected String pesoL;
-                protected String pesoB;
-                protected List<TNFe.InfNFe.Transp.Vol.Lacres> lacres;
+                public String qVol;
+                public String esp;
+                public String marca;
+                public String nVol;
+                public String pesoL;
+                public String pesoB;
+                public List<TNFe.InfNFe.Transp.Vol.Lacres> lacres;
 
                 /**
                  * Gets the value of the qVol property.
@@ -27172,7 +27172,7 @@ public class TNFe {
                 public static class Lacres {
 
                     @XmlElement(required = true)
-                    protected String nLacre;
+                    public String nLacre;
 
                     /**
                      * Gets the value of the nLacre property.

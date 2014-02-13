@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.OutputKeys;
 
 import javax.xml.transform.Source;
@@ -15,6 +17,8 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+
+import br.com.jtron.restnfe.entidade.envio.TNFe;
 
 public class XmlUtil {
 	
@@ -107,6 +111,35 @@ public class XmlUtil {
 		return matcher.group(1);										
 	}        
     
+    
+    public static TNFe lerDownload(String xml) throws Exception {  		
+        TNFe nfe = null;		       	        	       
+            if(xml!=null){                
+                JAXBContext context;
+                Unmarshaller unmarshaller;                       
+                Matcher m = Pattern.compile("(?s)(?=<NFe).*?>.*?(?<=</NFe>)").matcher(xml);
+                while(m.find()){            	                
+                    String strNFe = m.group(0);            	            	
+                    strNFe = strNFe.replace("<NFe>", "<NFe xmlns=\"http://www.portalfiscal.inf.br/nfe\">");            	            	
+                    context = JAXBContext.newInstance(TNFe.class);    
+                    unmarshaller = context.createUnmarshaller();                            
+                    nfe = (TNFe) unmarshaller.unmarshal(new StringReader(strNFe));                            
+                }         
+            }            
+        return nfe;
+    }  
+	
+		
+	public static Integer lerStatusProcessamento(String xml){
+				
+		if(xml.indexOf("<protNFe versao=\"2.00\">")>=1){
+			xml = xml.substring(xml.indexOf("<protNFe versao=\"2.00\">"));
+		}						
+		final Pattern pattern = Pattern.compile("<cStat>(.+?)</cStat>");
+		final Matcher matcher = pattern.matcher(xml);
+		matcher.find();
+		return Integer.valueOf(matcher.group(1));						  
+	}
                   
 
 }
