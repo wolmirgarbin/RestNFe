@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/vraptor-blank-project">
+
+<!-- 
+	Configuração de produção deve ser feita no container
+	com parametros de select para manter a conexção ativa
+-->
+<Resource 
+	name="jdbc/RestNFe" 
+    auth="Container" 
+	type="javax.sql.DataSource" 
+    username="root"
+	password="machado" 
+    driverClassName="com.mysql.jdbc.Driver" 
+	url="jdbc:mysql://localhost/restnfe"
+    maxActive="20" maxIdle="10" />            
+
+</Context>
