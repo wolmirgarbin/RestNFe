@@ -86,6 +86,15 @@ public class PdfController {
 				prod.setDescricao(det.getProd().getXProd());
 				prod.setCodigo(det.getProd().getCProd());
 				prod.setQuantiade(Integer.valueOf(det.getProd().getQCom().replace(".0000", "")));
+				
+				prod.setCfop(det.getProd().getCFOP());
+				
+				prod.setNcm(det.getProd().getNCM());
+				prod.setQuant(det.getProd().getQTrib());
+				prod.setTotal(det.getProd().getVProd());
+				prod.setUn(det.getProd().getUCom());
+				prod.setVlrUnit(det.getProd().getVUnCom());
+				
 				prods.add(prod);				
 			}				
 			 nfe.setProdutos(prods);

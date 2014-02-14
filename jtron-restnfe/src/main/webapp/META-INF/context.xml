@@ -5,7 +5,7 @@
 	Configuração de produção deve ser feita no container
 	com parametros de select para manter a conexção ativa
 -->
-<Resource 
+<!-- <Resource 
 	name="jdbc/RestNFe" 
     auth="Container" 
 	type="javax.sql.DataSource" 
@@ -13,6 +13,6 @@
 	password="machado" 
     driverClassName="com.mysql.jdbc.Driver" 
 	url="jdbc:mysql://localhost/restnfe"
-    maxActive="20" maxIdle="10" />            
+    maxActive="20" maxIdle="10" /> -->            
 
 </Context>

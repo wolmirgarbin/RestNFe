@@ -181,13 +181,16 @@
 <!-- estado transportadora -->
 <div style="position:absolute;top:471;left:687"><nobr><span class="ft6"></span></nobr></div>
 <!-- quantidade de mercadorias -->
-<div style="position:absolute;top:496;left:87"><nobr><span class="ft6">1</span></nobr></div>
+<div style="position:absolute;top:496;left:87"><nobr><span class="ft6"></span></nobr></div>
+<!-- Nome da transportadora -->
+<div style="position:absolute;top:445;left:35"><nobr><span class="ft6"></span></nobr></div>
+
 
 <div style="position:absolute;top:423;left:32"><nobr><span class="ft0"><b>TRANSPORTADOR / VOLUMES TRANSPORTADOS</b></span></nobr></div>
 <div style="position:absolute;top:435;left:504"><nobr><span class="ft5">CÓDIGO ANTT</span></nobr></div>
 <div style="position:absolute;top:435;left:596"><nobr><span class="ft5">PLACA DO VEÍC</span></nobr></div>
 <div style="position:absolute;top:435;left:715"><nobr><span class="ft5">CNPJ / CPF</span></nobr></div>
-<div style="position:absolute;top:445;left:35"><nobr><span class="ft6">JPA TECNOLOGIA S/C LTDA</span></nobr></div>
+
 <div style="position:absolute;top:435;left:35"><nobr><span class="ft5">NOME / RAZÃO SOCIAL</span></nobr></div>
 <div style="position:absolute;top:435;left:683"><nobr><span class="ft5">UF</span></nobr></div>
 <div style="position:absolute;top:461;left:35"><nobr><span class="ft5">ENDEREÇO</span></nobr></div>
@@ -209,7 +212,10 @@
 <div style="position:absolute;top:530;left:415"><nobr><span class="ft5">NCM/SH</span></nobr></div>
 <div style="position:absolute;top:530;left:457"><nobr><span class="ft5">CST</span></nobr></div>
 <div style="position:absolute;top:530;left:483"><nobr><span class="ft5">CFOP</span></nobr></div>
-<div style="position:absolute;top:530;left:514"><nobr><span class="ft5">UNID QUANT</span></nobr></div>
+
+<div style="position:absolute;top:530;left:514"><nobr><span class="ft5">UNID</span></nobr></div>
+<div style="position:absolute;top:530;left:544"><nobr><span class="ft5">QUANT</span></nobr></div>
+
 <div style="position:absolute;top:530;left:589"><nobr><span class="ft5">VALOR</span></nobr></div>
 <div style="position:absolute;top:541;left:594"><nobr><span class="ft5">UNIT</span></nobr></div>
 <div style="position:absolute;top:530;left:640"><nobr><span class="ft5">VALOR</span></nobr></div>
@@ -225,17 +231,25 @@
 <div style="position:absolute;top:530;left:831"><nobr><span class="ft5">ALÍQ.</span></nobr></div>
 <div style="position:absolute;top:541;left:837"><nobr><span class="ft5">IPI</span></nobr></div>
 
-
 <c:forEach items="${nfe.produtos}" var="prod">
-	<div style="position:absolute;top:554;left:37"><nobr><span class="ft2">000001</span></nobr></div>
-	<div style="position:absolute;top:554;left:88"><nobr><span class="ft2">SERVICOS PRESTADOS</span></nobr></div>
-	<div style="position:absolute;top:554;left:456"><nobr><span class="ft2">041 5949 PC.</span></nobr></div>
-	<div style="position:absolute;top:554;left:569"><nobr><span class="ft2">1 1.000,00 1.000,00</span></nobr></div>
-	<div style="position:absolute;top:554;left:694"><nobr><span class="ft2">0,00</span></nobr></div>
-	<div style="position:absolute;top:554;left:732"><nobr><span class="ft2">0,00</span></nobr></div>
-	<div style="position:absolute;top:554;left:770"><nobr><span class="ft2">0,00</span></nobr></div>
-	<div style="position:absolute;top:554;left:809"><nobr><span class="ft2">0</span></nobr></div>
-	<div style="position:absolute;top:554;left:840"><nobr><span class="ft2">0</span></nobr></div>
+	<div style="position:absolute;top:554;left:37"><nobr><span class="ft2">${prod.codigo}</span></nobr></div>
+	<div style="position:absolute;top:554;left:88"><nobr><span class="ft2">${prod.descricao}</span></nobr></div>
+	
+	<!-- NCM -->
+	<div style="position:absolute;top:554;left:412"><nobr><span class="ft2">${prod.ncm}</span></nobr></div>	
+	<!-- CST TODO validar fixo-->
+	<div style="position:absolute;top:554;left:454"><nobr><span class="ft2">40</span></nobr></div>	
+	<!-- CFOP -->
+	<div style="position:absolute;top:554;left:480"><nobr><span class="ft2">${prod.cfop}</span></nobr></div>
+	<!-- UN -->
+	<div style="position:absolute;top:554;left:514"><nobr><span class="ft2">${prod.un}</span></nobr></div>
+	<!-- QUANT -->
+	<div style="position:absolute;top:554;left:543"><nobr><span class="ft2">${prod.quant}</span></nobr></div>
+	<!-- VLR. UNIT. -->
+	<div style="position:absolute;top:554;left:582"><nobr><span class="ft2">${prod.vlrUnit}</span></nobr></div>	
+	<!-- VALOR TOTAL -->
+	<div style="position:absolute;top:554;left:633"><nobr><span class="ft2">${prod.total}</span></nobr></div>
+		
 </c:forEach>
 
 
@@ -254,7 +268,7 @@
   VALOR TOTAL: ${nfe.imposto.valorTotal}  DESTINATÁRIO: ${nfe.destinatario.nome} - ${nfe.destinatario.endereco}, ${nfe.destinatario.bairro}, ${nfe.destinatario.cidade}-${nfe.destinatario.estado}</span></nobr></div>
 <div style="position:absolute;top:1164;left:768"><nobr><span class="ft8"><b>NF-e</b></span></nobr></div>
 <div style="position:absolute;top:1194;left:36"><nobr><span class="ft5">DATA DO RECEBIMENTO</span></nobr></div>
-<div style="position:absolute;top:1204;left:757"><nobr><span class="ft8"><b>SÉRIE 1</b></span></nobr></div>
+<div style="position:absolute;top:1204;left:757"><nobr><span class="ft8"><b>SÉRIE ${nfe.serie}</b></span></nobr></div>
 <div style="position:absolute;top:1183;left:738"><nobr><span class="ft8"><b>Nº. ${nfe.numeracao}</b></span></nobr></div>
 <div style="position:absolute;top:1194;left:188"><nobr><span class="ft5">IDENTIFICAÇÃO E ASSINATURA DO RECEBEDOR</span></nobr></div>
 </div>
