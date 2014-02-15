@@ -6,14 +6,17 @@ import java.util.Random;
 
 public class ChaveAcessoNFe {
 
-	public String gerarChave(String cUF,String cnpj,String serie,String nNF) {  
+	public String gerarChave(String cUF,String cnpj,String serie,String nNF) throws Exception {  
         
-              
+		
+			StringBuilder chave = new StringBuilder();
+            
+			try{  
         	SimpleDateFormat dateFormat = new SimpleDateFormat("yyMM");        	
             String mod = "55"; // Modelo do Documento Fiscal.                
             String tpEmis = "1"; // Forma de emissão da NF-e                  
               
-            StringBuilder chave = new StringBuilder();  
+              
             chave.append(lpadTo(cUF, 2, '0'));  
             chave.append(lpadTo(dateFormat.format(new Date()), 4, '0'));  
             chave.append(lpadTo(cnpj.replaceAll("\\D",""), 14, '0'));  
@@ -22,7 +25,10 @@ public class ChaveAcessoNFe {
             chave.append(lpadTo(nNF, 9, '0'));  
             chave.append(lpadTo(tpEmis, 1, '0'));  
             chave.append(lpadTo(obterCNF(), 8, '0'));  
-            chave.append(modulo11(chave.toString()));  
+            chave.append(modulo11(chave.toString()));
+			}catch(Exception e){
+				throw new Exception(e);
+			}
   
             return chave.insert(0, "NFe").toString();     
         

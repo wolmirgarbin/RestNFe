@@ -82,13 +82,21 @@ public class RestNFeController {
 	}
 	
 	@Path("/nfe/gerarChave/{cUF}/{cnpj}/{serie}/{nNf}")
-	public void gerarChave(String cUF,String cnpj,String serie,String nNF){		
-		ChaveAcessoNFe chaveAcessoNFe = new ChaveAcessoNFe();		
-		result.use(Results.xml()).from(chaveAcessoNFe.gerarChave(cUF, cnpj, serie, nNF)).serialize();				
+	public void gerarChave(String cUF,String cnpj,String serie,String nNf){		
+		ChaveAcessoNFe chaveAcessoNFe = new ChaveAcessoNFe();
+		
+		try{			
+			String retorno = chaveAcessoNFe.gerarChave(cUF, cnpj, serie, nNf);
+			result.use(Results.xml()).from(retorno).serialize();			
+		}catch(Exception e){
+			result.use(Results.xml()).from(e.getCause()).serialize();
+		}
+		
+						
 	}
 	
 	
-	@Path("/nfe/emitirNFe/{ambiente}/{uf}")
+	@Path("/nfe/emitir")
 	public void emitirNFe(String xml,String ambiente){
 		
 		try {
