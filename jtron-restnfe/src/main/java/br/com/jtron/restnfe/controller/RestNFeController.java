@@ -43,7 +43,7 @@ public class RestNFeController {
 		this.result = result;
 	}	
 	
-	@Path("/nfe/consultarServico/{ambiente}/{chave}")
+	/*@Path("/nfe/consultarServico/{ambiente}/{chave}")
 	public void consultarServico(String ambiente,String chave){
 		
 		try {        	
@@ -60,9 +60,16 @@ public class RestNFeController {
 			e.printStackTrace();
 		}		
 		
-	}
+	}*/
 	
-	@Path("/nfe/consultarProtocolo/{ambiente}/{chave}")
+	/**
+	 * Consultar procotolo de uma NFe no ambiente SEFAZ.
+	 * Este serviço identifica o estado da emissão da nota pela chave
+	 * e faz a consulta no ambiente de SEFAZ correspondente.
+	 * @param ambiente
+	 * @param chave
+	 */
+	@Path("/nfe/consultar/protocolo/{ambiente}/{chave}")
 	public void consultarProtocolo(String ambiente,String chave){
 		
 		try {        	
@@ -81,7 +88,19 @@ public class RestNFeController {
 		
 	}
 	
-	@Path("/nfe/gerarChave/{cUF}/{cnpj}/{serie}/{nNf}")
+	/**
+	 *
+	 * Gerar chave para NFe.
+	 * O processo de geração de chave é complicado e para abstrarir esta complexidade
+	 * esta api permite a abstração do mesmo.
+	 * 
+	 * @GET
+	 * @param cUF
+	 * @param cnpj
+	 * @param serie
+	 * @param nNf
+	 */
+	@Path("/nfe/gerar/chave/{cUF}/{cnpj}/{serie}/{nNf}")
 	public void gerarChave(String cUF,String cnpj,String serie,String nNf){		
 		ChaveAcessoNFe chaveAcessoNFe = new ChaveAcessoNFe();
 		
@@ -96,6 +115,16 @@ public class RestNFeController {
 	}
 	
 	
+	/**
+	 * 
+	 * Emissão de NFe. Uma vez gerado o XML com a chave correta basta passar para 
+	 * este rest e a emissão é feita e validada. Caso sucesso tudo é armazenado e 
+	 * protocoloado para garantir validade juridica. Caso erro o mesmo é retornado
+	 * para tratamento. 
+	 * 
+	 * @param xml
+	 * @param ambiente
+	 */
 	@Path("/nfe/emitir")
 	public void emitirNFe(String xml,String ambiente){
 		
@@ -154,6 +183,15 @@ public class RestNFeController {
 		
 	}
 	
+	
+	/**
+	 *
+	 * Download do XML assinado digitalmente
+	 * 
+	 * @GET
+	 * @param chave
+	 * @return
+	 */
 	@Path("/nfe/download/xml/{chave}")
 	public Download downloadXML(String chave){
 

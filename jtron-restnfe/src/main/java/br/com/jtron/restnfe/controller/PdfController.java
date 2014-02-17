@@ -25,7 +25,15 @@ public class PdfController {
 		this.result = result;
 	}
 	
-	@Path("/nfe/download/pdf/{chave}")
+	
+	/**
+	 * 
+	 * NFe web online em HTML
+	 * 
+	 * @GET
+	 * @param chave
+	 */
+	@Path("/nfe/online/{chave}")
 	public void pdf(String chave){	
 		
 		NFeDAO nFeDAO = new NFeDAO();

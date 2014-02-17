@@ -130,7 +130,7 @@ function gerarChave(){
 	var numero = limpaInput($("#numero").val());	
 	$.ajax({
 	  dataType: 'text',
-	  url: '<%=request.getContextPath()%>/nfe/gerarChave/'+uf+'/'+cnpj+'/'+serie+'/'+numero
+	  url: '<%=request.getContextPath()%>/nfe/gerar/chave/'+uf+'/'+cnpj+'/'+serie+'/'+numero
 	}).done(function( data ) {
 		$( "#chaveResult" ).html( data  );
 		$("#chaveResult").show("slow");
