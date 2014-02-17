@@ -10,18 +10,19 @@ import br.com.jtron.restnfe.util.ConnectionHelper;
 public class NFeDAO {
 
 	
-	public void salvar(String chave,String xml,String protocolo){
+	public void salvar(String chave,String xml,String protocolo,String ambiente){
 		
 		Connection con = null;		
 		PreparedStatement ps = null;
 		
 		try {
 			con = ConnectionHelper.getConnection();			
-			ps = con.prepareStatement("insert into nfe (chave,xml,protocolo,dataEmissao) values (?,?,?,now())");
+			ps = con.prepareStatement("insert into nfe (chave,xml,protocolo,ambiente,dataEmissao) values (?,?,?,?,now())");
 			
 			ps.setString(1, chave);
 			ps.setString(2, xml);
 			ps.setString(3, protocolo);
+			ps.setInt(4, Integer.parseInt(ambiente));
 			
 			ps.executeUpdate();
 														
