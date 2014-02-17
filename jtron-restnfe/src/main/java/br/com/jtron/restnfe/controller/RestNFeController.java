@@ -122,6 +122,10 @@ public class RestNFeController {
 		
 		try {
 			
+			xml = xml.trim().replaceAll(">\\s+<", "><");
+			
+			System.out.println(" NOVO XML LIMPO ->"+xml);
+			
 			EmpresaDAO empresaDAO = new EmpresaDAO();
 			Empresa empresa = empresaDAO.obterEmpresaUnica();
 			
