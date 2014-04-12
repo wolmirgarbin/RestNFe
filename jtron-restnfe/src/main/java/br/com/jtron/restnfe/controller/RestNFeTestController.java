@@ -39,7 +39,7 @@ public class RestNFeTestController {
 				//char dv = chave.charAt(46);
 				//String nf = chave.substring(38, 46); 				
 				//xml = EditaXMLNFe.alteraXML(xml, chave, String.valueOf(dv), nf, numeroDaNota, "2","1");				
-				result.redirectTo(RestNFeController.class).emitirNFe(xml, "2", numeroDaNota, "1" ); 			
+				//result.redirectTo(RestNFeController.class).emitirNFe(xml, "2", numeroDaNota, "1" ); 			
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

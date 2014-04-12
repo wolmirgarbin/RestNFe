@@ -15,58 +15,12 @@
 
 <body>
 
-<!-- <form id="chaveForm" class="form-horizontal" method="post">
-<fieldset>
-Form Name
-<legend>Gerar Chave</legend>
-Text input
-<div class="form-group">
-  <label class="col-md-4 control-label" for="uf">UF</label>  
-  <div class="col-md-4">
-  <input id="uf" name="uf" type="text" placeholder="Código UF IBGE" class="form-control input-md" required="">
-  <span class="help-block">Estado do emitente</span>  
-  </div>
-</div>
-Text input
-<div class="form-group">
-  <label class="col-md-4 control-label" for="cnpj">CNPJ</label>  
-  <div class="col-md-4">
-  <input id="cnpj" name="cnpj" type="text" placeholder="CNPJ" class="form-control input-md" required="">
-  <span class="help-block">CNPJ do emitente</span>  
-  </div>
-</div>
-Text input
-<div class="form-group">
-  <label class="col-md-4 control-label" for="serie">Série</label>  
-  <div class="col-md-4">
-  <input id="serie" name="serie" type="text" placeholder="Número da série" class="form-control input-md" required="">
-  <span class="help-block">900 a 999 de uso exclusivo de NF-e </span>  
-  </div>
-</div>
-Text input
-<div class="form-group">
-  <label class="col-md-4 control-label" for="numero">Nota Fiscal</label>  
-  <div class="col-md-4">
-  <input id="numero" name="numero" type="text" placeholder="Número da nota" class="form-control input-md" required="">
-  <span class="help-block">Numeração unica de nota para cada série</span>  
-  </div>
-</div>
-<div style="margin: 15px;display: none;" id="chaveResult" class="well"></div>
-Button
-<div class="form-group">
-  <label class="col-md-4 control-label" for="gerarChave"></label>
-  <div class="col-md-4">
-    <button id="gerarChave" name="gerarChave" class="btn btn-primary" >Gerar Cahve</button>
-  </div>
-</div>
-</fieldset>
-</form> -->
-
 <form id="notaForm" class="form-horizontal">
+
 <fieldset>
 
 <!-- Form Name -->
-<legend>Emitir Nota</legend>
+<legend>Ambiente de teste Emitir Nota</legend>
 
 <!-- Multiple Radios -->
 <div class="form-group">
@@ -84,22 +38,6 @@ Button
       Homologação
     </label>
 	</div>
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="serie">Série</label>  
-  <div class="col-md-4">
-  <input id="serie" name="serie" type="text" placeholder="Número da série" class="form-control input-md" required="">
-  <span class="help-block">900 a 999 de uso exclusivo de NF-e </span>  
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="numero">Nota Fiscal</label>  
-  <div class="col-md-4">
-  <input id="numero" name="numero" type="text" placeholder="Número da nota" class="form-control input-md" required="">
-  <span class="help-block">Numeração unica de nota para cada série</span>  
   </div>
 </div>
 
@@ -136,24 +74,6 @@ $( document ).ready(function() {
 	});		
 });
 
-<%-- function gerarChave(){	
-	$('#gerarChave').prop('disabled', true);
-	var uf = limpaInput($("#uf").val());
-	var cnpj = limpaInput($("#cnpj").val());
-	var serie = limpaInput($("#serie").val());
-	var numero = limpaInput($("#numero").val());	
-	$.ajax({
-	  dataType: 'text',
-	  url: '<%=request.getContextPath()%>/nfe/gerar/chave/'+uf+'/'+cnpj+'/'+serie+'/'+numero
-	}).done(function( data ) {
-		$( "#chaveResult" ).html( data  );
-		$("#chaveResult").show("slow");
-		$('#gerarChave').prop('disabled', false);
-	}).error(function (request, status, error) {
-        alert(request.responseText);
-        $('#gerarChave').prop('disabled', false);
-	});	
-} --%>
 
 function emitirNota(){
 	$('#emitirNota').prop('disabled', true);

@@ -6,6 +6,7 @@ package br.com.jtron.restnfe.dto;
  */
 public class Empresa {
 	
+	private Integer idEmrpesa;
 	private String nome;
 	private String cnpj;
 	private String codEstado;
@@ -28,6 +29,12 @@ public class Empresa {
 	}
 	public void setCodEstado(String codEstado) {
 		this.codEstado = codEstado;
+	}
+	public Integer getIdEmrpesa() {
+		return idEmrpesa;
+	}
+	public void setIdEmrpesa(Integer idEmrpesa) {
+		this.idEmrpesa = idEmrpesa;
 	}
 	
 	

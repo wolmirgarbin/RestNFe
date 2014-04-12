@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
 
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
@@ -15,11 +16,14 @@ import br.com.jtron.restnfe.cert.AssinadorA1;
 import br.com.jtron.restnfe.cert.AutenticadorCert;
 import br.com.jtron.restnfe.dao.EmpresaDAO;
 import br.com.jtron.restnfe.dao.NFeDAO;
+import br.com.jtron.restnfe.dao.NumeracaoDAO;
 import br.com.jtron.restnfe.dto.Empresa;
+import br.com.jtron.restnfe.dto.Numeracao;
 import br.com.jtron.restnfe.sefaz.URLSefazConsultaSituacao;
 import br.com.jtron.restnfe.sefaz.URLSefazNFeRecepcao;
 import br.com.jtron.restnfe.sefaz.URLSefazNFeRetorno;
 import br.com.jtron.restnfe.util.ChaveAcessoNFe;
+import br.com.jtron.restnfe.util.ConnectionHelper;
 import br.com.jtron.restnfe.util.EditaXMLNFe;
 import br.com.jtron.restnfe.util.PropertiesHelper;
 import br.com.jtron.restnfe.util.XmlUtil;
@@ -118,68 +122,79 @@ public class RestNFeController {
 	 * @param serie	
 	 */
 	@Path("/nfe/emitir")
-	public void emitirNFe(String xml,String ambiente,String nota,String serie){
+	public void emitirNFe(final String xml,final String ambiente){
 		
-		try {
+
+		synchronized(this){
 			
-			xml = xml.trim().replaceAll(">\\s+<", "><");
-			
-			System.out.println(" NOVO XML LIMPO ->"+xml);
-			
-			EmpresaDAO empresaDAO = new EmpresaDAO();
-			Empresa empresa = empresaDAO.obterEmpresaUnica();
-			
-			ChaveAcessoNFe chaveAcessoNFe = new ChaveAcessoNFe();	
-			String chave = chaveAcessoNFe.gerarChave(empresa.getCodEstado(), empresa.getCnpj(), serie, nota);			
-			char dv = chave.charAt(46);
-			String nf = chave.substring(38, 46);			
-			xml = EditaXMLNFe.alteraXML(xml, chave, String.valueOf(dv), nf, nota, ambiente,serie);		
-			//TNFe nfe = XmlUtil.lerDownload(ResultSEFAZUtil.lerXMLNfeDownload(xml));								 									
-			String certificado = PropertiesHelper.getInstance().getKey("certificado");
-	        String senha  = PropertiesHelper.getInstance().getKey("senha");        
-	        xml = AssinadorA1.assinar(xml,certificado,senha);        
-	        NFeEmissaoService nFeEmissaoService = new NFeEmissaoService();
-	        
-	        InputStream in = new FileInputStream(certificado);
-	        AutenticadorCert autenticadorCert = new AutenticadorCert();            
-            autenticadorCert.preparaAmbiente(in, senha.toCharArray());
-            
-	        String url = URLSefazNFeRecepcao.getURLPorUF(Integer.valueOf(empresa.getCodEstado()), Integer.valueOf(ambiente));
-	        	        
-	        String resultadoSEFAZ = nFeEmissaoService.emissao(xml, empresa.getCodEstado(), url);
-	        
-	        String protocolo = XmlUtil.lerPotocoloEnvioLoto(resultadoSEFAZ);
-	        	        	        
-	        boolean processando = true;								
-			int status = 1;
-			String retorno = null;					
-			while(processando){		
-				retorno = retornoEmissao(ambiente,protocolo,empresa.getCodEstado());
-				System.out.println(retorno);
-				status = XmlUtil.lerStatusProcessamento(retorno);
-				if(status!=105){
-					processando = false;
-					continue;
-				}			
-				try {
-					Thread.sleep(2000L);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-					result.use(Results.xml()).from(retorno).serialize();					
+			String novoXML;
+
+			try {
+				
+				//Tornando a conexao com o banco transacional
+				Connection con = ConnectionHelper.getConnection();
+				con.setAutoCommit(false);
+				//limpando xml de entreda removendo todos os espacoes em branco entre tags
+				novoXML = xml.trim().replaceAll(">\\s+<", "><");
+							
+				EmpresaDAO empresaDAO = new EmpresaDAO();
+				Empresa empresa = empresaDAO.obterEmpresaUnica();
+				NumeracaoDAO numeracaoDAO = new NumeracaoDAO();
+				
+				//Buscando a proxima numeracao 
+				Numeracao numeracao =  numeracaoDAO.nextVal(empresa.getIdEmrpesa(),con);
+				
+				ChaveAcessoNFe chaveAcessoNFe = new ChaveAcessoNFe();												
+				
+				String chave = chaveAcessoNFe.gerarChave(empresa.getCodEstado(), empresa.getCnpj(), numeracao.getSerie(), numeracao.getNumero());			
+				char dv = chave.charAt(46);
+				String nf = chave.substring(38, 46);			
+				novoXML = EditaXMLNFe.alteraXML(novoXML, chave, String.valueOf(dv), nf, numeracao.getNumero(), ambiente,numeracao.getSerie());	
+									 											
+				String certificado = PropertiesHelper.getInstance().getKey("certificado");
+		        String senha  = PropertiesHelper.getInstance().getKey("senha");        
+		        novoXML = AssinadorA1.assinar(novoXML,certificado,senha);        
+		        NFeEmissaoService nFeEmissaoService = new NFeEmissaoService();
+		        
+		        InputStream in = new FileInputStream(certificado);
+		        AutenticadorCert autenticadorCert = new AutenticadorCert();            
+	            autenticadorCert.preparaAmbiente(in, senha.toCharArray());
+	            
+		        String url = URLSefazNFeRecepcao.getURLPorUF(Integer.valueOf(empresa.getCodEstado()), Integer.valueOf(ambiente));
+		        	        
+		        String resultadoSEFAZ = nFeEmissaoService.emissao(novoXML, empresa.getCodEstado(), url);
+		        
+		        String protocolo = XmlUtil.lerPotocoloEnvioLoto(resultadoSEFAZ);
+		        	        	        
+		        boolean processando = true;								
+				int status = 1;
+				String retorno = null;					
+				while(processando){		
+					retorno = retornoEmissao(ambiente,protocolo,empresa.getCodEstado());
+					System.out.println(retorno);
+					status = XmlUtil.lerStatusProcessamento(retorno);
+					if(status!=105){
+						processando = false;					
+						continue;
+					}						
+					try {
+						Thread.sleep(2000L);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+						result.use(Results.xml()).from(retorno).serialize();					
+					}
+				}				        	   
+				if(status==100){						
+					NFeDAO nFeDAO = new NFeDAO();
+					nFeDAO.salvar(chave.replace("NFe", ""), novoXML,retorno,ambiente,con,empresa.getIdEmrpesa());						        
 				}						
-			}
-	        	    
-			if(status==100){						
-				NFeDAO nFeDAO = new NFeDAO();
-				nFeDAO.salvar(chave.replace("NFe", ""), xml,retorno,ambiente);						        
-			}
-			
-			result.use(Results.xml()).from(retorno).serialize();
-        
-		} catch (Exception e) {
-			e.printStackTrace();
-			result.use(Results.xml()).from(e.getMessage()).serialize();
-		}
+				result.use(Results.xml()).from(retorno).serialize();			        
+			} catch (Exception e) {
+				e.printStackTrace();
+				result.use(Results.xml()).from(e.getMessage()).serialize();
+			}									
+		}								
+		
 		
 	}
 	
@@ -210,23 +225,8 @@ public class RestNFeController {
 	}
 	
 	/*@Path("/nfe/download/pdf/{chave}")
-	public Download downloadPDF(String chave){
-
-		NFeDAO nFeDAO = new NFeDAO();
-		
-		String xml = nFeDAO.obterXmlPorChave(chave);
-		
-		try {
-			return new ByteArrayDownload(xml.getBytes("UTF-8") , "application/octet-stream", "Evento_MDE-"+chave+".xml" );			
-			//OutputStream os = new FileOutputStream("C:\hello.pdf");  
-			//Html2Pdf.convert("<h1 style=\"color:red\">Hello PDF</h1>", os);           
-			//os.close();			
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
-		
+	public Download downloadPDF(String chave){				
+				
 	}*/
 	
 			

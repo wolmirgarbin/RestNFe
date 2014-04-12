@@ -24,6 +24,7 @@ public class EmpresaDAO {
 			rs = ps.executeQuery();
 				
 			if(rs.next()){					
+					empresa.setIdEmrpesa(rs.getInt("id"));
 					empresa.setCnpj(rs.getString("cnpj"));
 					empresa.setCodEstado(rs.getString("codigoEstado"));
 					empresa.setNome(rs.getString("nome"));

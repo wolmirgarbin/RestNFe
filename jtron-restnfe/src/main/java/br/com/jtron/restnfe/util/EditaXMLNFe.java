@@ -3,6 +3,8 @@ package br.com.jtron.restnfe.util;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -31,8 +33,7 @@ public class EditaXMLNFe {
 			//String filepath = "C:\\NFE-Instaquadros3.xml";
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			Document doc = docBuilder.parse(new InputSource(new StringReader(xml.replaceAll("\"", "'"))));//docBuilder.parse(filepath);
-	 
+			Document doc = docBuilder.parse(new InputSource(new StringReader(xml.replaceAll("\"", "'"))));
 	 
 			Node infNFe = doc.getElementsByTagName("infNFe").item(0);	 	
 			NamedNodeMap attr = infNFe.getAttributes();
@@ -51,7 +52,8 @@ public class EditaXMLNFe {
 			Node serie = doc.getElementsByTagName("serie").item(0);
 			serie.setTextContent(numeroSerie);
 			
-			
+			Node dEmi = doc.getElementsByTagName("dEmi").item(0);
+			dEmi.setTextContent(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 			
 			/**
 			 * validar o tipo de ambiente para emissao da nota 1= producao 2= homologacao	
