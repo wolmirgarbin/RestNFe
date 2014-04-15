@@ -1,21 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head>
-<title>Exemplo de Danfe</title>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="generator" content="pdftohtml 0.39">
-<meta name="author" content="þÿ">
-<meta name="keywords" content="">
-<meta name="date" content="">
-<meta name="subject" content="">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	
 </head>
 <body bgcolor="#FFFFFF" link="blue" vlink="blue">
 <!-- Page 1 -->
-<a name="1"></a>
+<!-- <a name="1"></a> -->
 <div style="position:relative;width:892;height:1263;">
 <style type="text/css"> 
 <!--
@@ -33,9 +32,9 @@
 	.ft11{font-size:6px;line-height:10px;font-family:Times;color:#000000;}
 -->
 </style>
-<img src="<%=request.getContextPath()%>/img/danfe.png" alt="background image" height="1263" width="892">
+<img src="<%=request.getContextPath()%>/img/danfe.png" alt="background image" height="1263" width="892"/>
 
-<!-- <div style="position:absolute;top:37;left:162"><nobr><span class="ft0"><b>IDENTIFICAÇÃO DO EMITENTE</b></span></nobr></div> -->
+<!-- <div style="position:absolute;top:37;left:162"><nobr><span class="ft0"><b>IDENTIFICAÃ‡ÃƒO DO EMITENTE</b></span></nobr></div> -->
 
 <div style="position:absolute;top:39;left:436"><nobr><span class="ft1"><b>DANFE</b></span></nobr></div>
 <div style="position:absolute;top:59;left:399"><nobr><span class="ft2">DOCUMENTO AUXILIAR</span></nobr></div>
@@ -46,8 +45,8 @@
 <!-- <div style="position:absolute;top:178;left:172"><nobr><span class="ft3"><b>Fone 2280-5776</b></span></nobr></div> -->
 
 <div style="position:absolute;top:135;left:556"><nobr><span class="ft4">Consulta de autenticidade no portal nacional da NF-e</span></nobr></div>
-<div style="position:absolute;top:232;left:302"><nobr><span class="ft5">INSCRIÇÃO ESTADUAL DO SUBST. TRIBUT.</span></nobr></div>
-<div style="position:absolute;top:232;left:36"><nobr><span class="ft5">INSCRIÇÃO ESTADUAL</span></nobr></div>
+<div style="position:absolute;top:232;left:302"><nobr><span class="ft5">INSCRIÃ‡ÃƒO ESTADUAL DO SUBST. TRIBUT.</span></nobr></div>
+<div style="position:absolute;top:232;left:36"><nobr><span class="ft5">INSCRIÃ‡ÃƒO ESTADUAL</span></nobr></div>
 <div style="position:absolute;top:232;left:595"><nobr><span class="ft5">CNPJ</span></nobr></div>
 
 <!-- CNPJ do emitente -->
@@ -64,35 +63,35 @@
 <div style="position:absolute;top:111;left:549"><nobr><span class="ft3"><b> ${fn:replace(nfe.chave,'NFe', '')} </b></span></nobr></div>
 
 <div style="position:absolute;top:116;left:514"><nobr><span class="ft7"><b>1</b></span></nobr></div>
-<div style="position:absolute;top:123;left:413"><nobr><span class="ft2">1 - SAÍDA</span></nobr></div>
-<div style="position:absolute;top:86;left:430"><nobr><span class="ft2">ELETRÔNICA</span></nobr></div>
+<div style="position:absolute;top:123;left:413"><nobr><span class="ft2">1 - SAÃDA</span></nobr></div>
+<div style="position:absolute;top:86;left:430"><nobr><span class="ft2">ELETRÃ”NICA</span></nobr></div>
 <div style="position:absolute;top:72;left:419"><nobr><span class="ft2">DA NOTA FISCAL</span></nobr></div>
 
 <!-- Numero da nota fiscal -->
-<div style="position:absolute;top:147;left:422"><nobr><span class="ft8"><b>Nº. <fmt:formatNumber pattern="00000000" value="${nfe.numeracao}" /> </b></span></nobr></div>
+<div style="position:absolute;top:147;left:422"><nobr><span class="ft8"><b>NÂº. <fmt:formatNumber pattern="00000000" value="${nfe.numeracao}" /> </b></span></nobr></div>
 <!-- Serie da nota fiscal -->
-<div style="position:absolute;top:165;left:442"><nobr><span class="ft8"><b>SÉRIE <fmt:formatNumber pattern="000" value="${nfe.serie}" /></b></span></nobr></div>
+<div style="position:absolute;top:165;left:442"><nobr><span class="ft8"><b>SÃ‰RIE <fmt:formatNumber pattern="000" value="${nfe.serie}" /></b></span></nobr></div>
 
 <div style="position:absolute;top:176;left:612"><nobr><span class="ft4">ou no site da Sefaz Autorizadora</span></nobr></div>
 <div style="position:absolute;top:156;left:616"><nobr><span class="ft4">www.nfe.fazenda.gov.br/portal</span></nobr></div>
 
-<!-- //TODO incluir paginação -->
+<!-- //TODO incluir paginaÃ§Ã£o -->
 <div style="position:absolute;top:182;left:433"><nobr><span class="ft8"><b>FOLHA 1/1</b></span></nobr></div>
 
-<div style="position:absolute;top:199;left:36"><nobr><span class="ft5">NATUREZA DA OPERAÇÃO</span></nobr></div>
+<div style="position:absolute;top:199;left:36"><nobr><span class="ft5">NATUREZA DA OPERAÃ‡ÃƒO</span></nobr></div>
 
-<div style="position:absolute;top:199;left:543"><nobr><span class="ft5">PROTOCOLO DE AUTORIZAÇÃO DE USO</span></nobr></div>
+<div style="position:absolute;top:199;left:543"><nobr><span class="ft5">PROTOCOLO DE AUTORIZAÃ‡ÃƒO DE USO</span></nobr></div>
 
 <!-- Natureza da operacao -->
 <div style="position:absolute;top:212;left:35"><nobr><span class="ft6">${nfe.natureza}</span></nobr></div>
 
-<!-- Fazão social -->
+<!-- FazÃ£o social -->
 <div style="position:absolute;top:128;left:39"><nobr><span class="ft1"><b>${nfe.emitente.nome}</b></span></nobr></div>
 
-<div style="position:absolute;top:266;left:32"><nobr><span class="ft0"><b>DESTINATÁRIO / REMETENTE</b></span></nobr></div>
-<div style="position:absolute;top:279;left:36"><nobr><span class="ft5">NOME / RAZÃO SOCIAL</span></nobr></div>
+<div style="position:absolute;top:266;left:32"><nobr><span class="ft0"><b>DESTINATÃRIO / REMETENTE</b></span></nobr></div>
+<div style="position:absolute;top:279;left:36"><nobr><span class="ft5">NOME / RAZÃƒO SOCIAL</span></nobr></div>
 <div style="position:absolute;top:279;left:595"><nobr><span class="ft5">CNPJ / CPF</span></nobr></div>
-<div style="position:absolute;top:279;left:749"><nobr><span class="ft5">DATA DA EMISSÃO</span></nobr></div>
+<div style="position:absolute;top:279;left:749"><nobr><span class="ft5">DATA DA EMISSÃƒO</span></nobr></div>
 
 <!-- Nome do destinatario -->
 <div style="position:absolute;top:289;left:35"><nobr><span class="ft6">${nfe.destinatario.nome}</span></nobr></div>
@@ -104,9 +103,9 @@
 <div style="position:absolute;top:289;left:768"><nobr><span class="ft6">${nfe.dataEmissao}</span></nobr></div>
 
 <div style="position:absolute;top:304;left:459"><nobr><span class="ft5">BAIRRO / DISTRITO</span></nobr></div>
-<div style="position:absolute;top:304;left:36"><nobr><span class="ft5">ENDEREÇO</span></nobr></div>
+<div style="position:absolute;top:304;left:36"><nobr><span class="ft5">ENDEREÃ‡O</span></nobr></div>
 <div style="position:absolute;top:304;left:672"><nobr><span class="ft5">CEP</span></nobr></div>
-<div style="position:absolute;top:304;left:749"><nobr><span class="ft5">DATA DA SAÍDA</span></nobr></div>
+<div style="position:absolute;top:304;left:749"><nobr><span class="ft5">DATA DA SAÃDA</span></nobr></div>
 
 <!-- Endereco do destinatario -->
 <div style="position:absolute;top:315;left:35"><nobr><span class="ft6">${nfe.destinatario.endereco}</span></nobr></div>
@@ -116,34 +115,34 @@
 <div style="position:absolute;top:339;left:432"><nobr><span class="ft6">${nfe.destinatario.estado}</span></nobr></div>
 
 <!-- Data da saida //TODO -->
-<div style="position:absolute;top:330;left:749"><nobr><span class="ft5">HORA DA SAÍDA</span></nobr></div>
+<div style="position:absolute;top:330;left:749"><nobr><span class="ft5">HORA DA SAÃDA</span></nobr></div>
 <div style="position:absolute;top:315;left:768"><nobr><span class="ft6">25/12/2009</span></nobr></div>
 
 <!-- Inscricao estadual do destinatario -->
 <div style="position:absolute;top:339;left:641"><nobr><span class="ft6">${nfe.destinatario.inscricao}</span></nobr></div>
 
-<div style="position:absolute;top:330;left:36"><nobr><span class="ft5">MUNICÍPIO</span></nobr></div>
+<div style="position:absolute;top:330;left:36"><nobr><span class="ft5">MUNICÃPIO</span></nobr></div>
 <div style="position:absolute;top:330;left:429"><nobr><span class="ft5">UF</span></nobr></div>
-<div style="position:absolute;top:330;left:595"><nobr><span class="ft5">INSCRIÇÃO ESTADUAL</span></nobr></div>
+<div style="position:absolute;top:330;left:595"><nobr><span class="ft5">INSCRIÃ‡ÃƒO ESTADUAL</span></nobr></div>
 <div style="position:absolute;top:330;left:459"><nobr><span class="ft5">FONE / FAX</span></nobr></div>
-<div style="position:absolute;top:357;left:32"><nobr><span class="ft0"><b>CÁLCULO DO IMPOSTO</b></span></nobr></div>
-<div style="position:absolute;top:370;left:35"><nobr><span class="ft5">BASE DE CÁLCULO DO ICMS</span></nobr></div>
+<div style="position:absolute;top:357;left:32"><nobr><span class="ft0"><b>CÃLCULO DO IMPOSTO</b></span></nobr></div>
+<div style="position:absolute;top:370;left:35"><nobr><span class="ft5">BASE DE CÃLCULO DO ICMS</span></nobr></div>
 <div style="position:absolute;top:370;left:204"><nobr><span class="ft5">VALOR DO ICMS</span></nobr></div>
 <div style="position:absolute;top:395;left:315"><nobr><span class="ft5">DESCONTO</span></nobr></div>
 <div style="position:absolute;top:395;left:178"><nobr><span class="ft5">VALOR DO SEGURO</span></nobr></div>
 <div style="position:absolute;top:395;left:36"><nobr><span class="ft5">VALOR DO FRETE</span></nobr></div>
 <div style="position:absolute;top:395;left:591"><nobr><span class="ft5">VALOR TOTAL DO IPI</span></nobr></div>
 <div style="position:absolute;top:395;left:715"><nobr><span class="ft5">VALOR TOTAL DA NOTA</span></nobr></div>
-<div style="position:absolute;top:395;left:453"><nobr><span class="ft5">OUTRAS DESP. ACESSÓRIAS</span></nobr></div>
-<div style="position:absolute;top:370;left:371"><nobr><span class="ft5">BASE DE CÁLCULO DO ICMS S.T.</span></nobr></div>
-<div style="position:absolute;top:370;left:536"><nobr><span class="ft5">VALOR DO ICMS SUBSTITUIÇÃO</span></nobr></div>
+<div style="position:absolute;top:395;left:453"><nobr><span class="ft5">OUTRAS DESP. ACESSÃ“RIAS</span></nobr></div>
+<div style="position:absolute;top:370;left:371"><nobr><span class="ft5">BASE DE CÃLCULO DO ICMS S.T.</span></nobr></div>
+<div style="position:absolute;top:370;left:536"><nobr><span class="ft5">VALOR DO ICMS SUBSTITUIÃ‡ÃƒO</span></nobr></div>
 <div style="position:absolute;top:370;left:702"><nobr><span class="ft5">VALOR TOTAL DOS PRODUTOS</span></nobr></div>
 
 <!-- Dados de imposto -->
 
 <!-- VALOR DO SEGURO -->
 <div style="position:absolute;top:405;left:232"><nobr><span class="ft6">${nfe.imposto.seguro}</span></nobr></div>
-<!-- OUTRAS DESP. ACESSÓRIAS -->
+<!-- OUTRAS DESP. ACESSÃ“RIAS -->
 <div style="position:absolute;top:405;left:508"><nobr><span class="ft6">${nfe.imposto.outros}</span></nobr></div>
 <!-- VALOR DO FRETE -->
 <div style="position:absolute;top:405;left:89"><nobr><span class="ft6">${nfe.imposto.frete}</span></nobr></div>
@@ -153,13 +152,13 @@
 <div style="position:absolute;top:405;left:635"><nobr><span class="ft6">${nfe.imposto.ipi}</span></nobr></div>
 <!-- VALOR TOTAL DA NOTA -->
 <div style="position:absolute;top:405;left:759"><nobr><span class="ft6">${nfe.imposto.valorTotal}</span></nobr></div>
-<!-- BASE DE CÁLCULO DO ICMS -->
+<!-- BASE DE CÃLCULO DO ICMS -->
 <div style="position:absolute;top:379;left:103"><nobr><span class="ft6">${nfe.imposto.baseICMS}</span></nobr></div>
 <!-- VALOR DO ICMS -->
 <div style="position:absolute;top:379;left:271"><nobr><span class="ft6">${nfe.imposto.valorICMS}</span></nobr></div>
-<!-- BASE DE CÁLCULO DO ICMS S.T. -->
+<!-- BASE DE CÃLCULO DO ICMS S.T. -->
 <div style="position:absolute;top:379;left:439"><nobr><span class="ft6">${nfe.imposto.baseST}</span></nobr></div>
-<!-- VALOR DO ICMS SUBSTITUIÇÃO -->
+<!-- VALOR DO ICMS SUBSTITUIÃ‡ÃƒO -->
 <div style="position:absolute;top:379;left:604"><nobr><span class="ft6">${nfe.imposto.subICMS}</span></nobr></div>
 <!-- VALOR TOTAL DOS PRODUTOS -->
 <div style="position:absolute;top:380;left:759"><nobr><span class="ft6">${nfe.imposto.valorProdutos}</span></nobr></div>
@@ -173,7 +172,7 @@
 <!-- CNPJ da transportadora -->
 <div style="position:absolute;top:445;left:724"><nobr><span class="ft6"></span></nobr></div>
 <!-- <div style="position:absolute;top:445;left:486"><nobr><span class="ft6">0</span></nobr></div> -->
-<div style="position:absolute;top:451;left:405"><nobr><span class="ft9"><!-- 1 - DESTINATÁRIO --></span></nobr></div>
+<div style="position:absolute;top:451;left:405"><nobr><span class="ft9"><!-- 1 - DESTINATÃRIO --></span></nobr></div>
 <!-- Endereco transportadora -->
 <div style="position:absolute;top:471;left:35"><nobr><span class="ft6"></span></nobr></div>
 <!-- cidade transportadora -->
@@ -187,28 +186,28 @@
 
 
 <div style="position:absolute;top:423;left:32"><nobr><span class="ft0"><b>TRANSPORTADOR / VOLUMES TRANSPORTADOS</b></span></nobr></div>
-<div style="position:absolute;top:435;left:504"><nobr><span class="ft5">CÓDIGO ANTT</span></nobr></div>
-<div style="position:absolute;top:435;left:596"><nobr><span class="ft5">PLACA DO VEÍC</span></nobr></div>
+<div style="position:absolute;top:435;left:504"><nobr><span class="ft5">CÃ“DIGO ANTT</span></nobr></div>
+<div style="position:absolute;top:435;left:596"><nobr><span class="ft5">PLACA DO VEÃC</span></nobr></div>
 <div style="position:absolute;top:435;left:715"><nobr><span class="ft5">CNPJ / CPF</span></nobr></div>
 
-<div style="position:absolute;top:435;left:35"><nobr><span class="ft5">NOME / RAZÃO SOCIAL</span></nobr></div>
+<div style="position:absolute;top:435;left:35"><nobr><span class="ft5">NOME / RAZÃƒO SOCIAL</span></nobr></div>
 <div style="position:absolute;top:435;left:683"><nobr><span class="ft5">UF</span></nobr></div>
-<div style="position:absolute;top:461;left:35"><nobr><span class="ft5">ENDEREÇO</span></nobr></div>
-<div style="position:absolute;top:461;left:404"><nobr><span class="ft5">MUNICÍPIO</span></nobr></div>
+<div style="position:absolute;top:461;left:35"><nobr><span class="ft5">ENDEREÃ‡O</span></nobr></div>
+<div style="position:absolute;top:461;left:404"><nobr><span class="ft5">MUNICÃPIO</span></nobr></div>
 <div style="position:absolute;top:461;left:683"><nobr><span class="ft5">UF</span></nobr></div>
-<div style="position:absolute;top:461;left:715"><nobr><span class="ft5">INSCRIÇÃO ESTADUAL</span></nobr></div>
-<div style="position:absolute;top:487;left:736"><nobr><span class="ft5">PESO LÍQUIDO</span></nobr></div>
+<div style="position:absolute;top:461;left:715"><nobr><span class="ft5">INSCRIÃ‡ÃƒO ESTADUAL</span></nobr></div>
+<div style="position:absolute;top:487;left:736"><nobr><span class="ft5">PESO LÃQUIDO</span></nobr></div>
 <div style="position:absolute;top:496;left:305"><nobr><span class="ft6">.</span></nobr></div>
 <div style="position:absolute;top:496;left:458"><nobr><span class="ft6">.</span></nobr></div>
 <div style="position:absolute;top:487;left:609"><nobr><span class="ft5">PESO BRUTO</span></nobr></div>
 <div style="position:absolute;top:487;left:304"><nobr><span class="ft5">MARCA</span></nobr></div>
-<div style="position:absolute;top:487;left:457"><nobr><span class="ft5">NUMERAÇÃO</span></nobr></div>
-<div style="position:absolute;top:487;left:151"><nobr><span class="ft5">ESPÉCIE</span></nobr></div>
+<div style="position:absolute;top:487;left:457"><nobr><span class="ft5">NUMERAÃ‡ÃƒO</span></nobr></div>
+<div style="position:absolute;top:487;left:151"><nobr><span class="ft5">ESPÃ‰CIE</span></nobr></div>
 <div style="position:absolute;top:487;left:36"><nobr><span class="ft5">QUANTIDADE</span></nobr></div>
-<div style="position:absolute;top:516;left:32"><nobr><span class="ft0"><b>DADOS DOS PRODUTOS / SERVIÇOS</b></span></nobr></div>
-<div style="position:absolute;top:530;left:40"><nobr><span class="ft5">CÓDIGO</span></nobr></div>
+<div style="position:absolute;top:516;left:32"><nobr><span class="ft0"><b>DADOS DOS PRODUTOS / SERVIÃ‡OS</b></span></nobr></div>
+<div style="position:absolute;top:530;left:40"><nobr><span class="ft5">CÃ“DIGO</span></nobr></div>
 <div style="position:absolute;top:541;left:37"><nobr><span class="ft5">PRODUTO</span></nobr></div>
-<div style="position:absolute;top:530;left:168"><nobr><span class="ft5">DESCRIÇÃO DO PRODUTO / SERVIÇO</span></nobr></div>
+<div style="position:absolute;top:530;left:168"><nobr><span class="ft5">DESCRIÃ‡ÃƒO DO PRODUTO / SERVIÃ‡O</span></nobr></div>
 <div style="position:absolute;top:530;left:415"><nobr><span class="ft5">NCM/SH</span></nobr></div>
 <div style="position:absolute;top:530;left:457"><nobr><span class="ft5">CST</span></nobr></div>
 <div style="position:absolute;top:530;left:483"><nobr><span class="ft5">CFOP</span></nobr></div>
@@ -220,15 +219,15 @@
 <div style="position:absolute;top:541;left:594"><nobr><span class="ft5">UNIT</span></nobr></div>
 <div style="position:absolute;top:530;left:640"><nobr><span class="ft5">VALOR</span></nobr></div>
 <div style="position:absolute;top:541;left:640"><nobr><span class="ft5">TOTAL</span></nobr></div>
-<div style="position:absolute;top:530;left:684"><nobr><span class="ft5">B.CÁLC</span></nobr></div>
+<div style="position:absolute;top:530;left:684"><nobr><span class="ft5">B.CÃLC</span></nobr></div>
 <div style="position:absolute;top:541;left:689"><nobr><span class="ft5">ICMS</span></nobr></div>
 <div style="position:absolute;top:530;left:724"><nobr><span class="ft5">VALOR</span></nobr></div>
 <div style="position:absolute;top:541;left:728"><nobr><span class="ft5">ICMS</span></nobr></div>
 <div style="position:absolute;top:530;left:762"><nobr><span class="ft5">VALOR</span></nobr></div>
 <div style="position:absolute;top:541;left:771"><nobr><span class="ft5">IPI</span></nobr></div>
-<div style="position:absolute;top:530;left:800"><nobr><span class="ft5">ALÍQ.</span></nobr></div>
+<div style="position:absolute;top:530;left:800"><nobr><span class="ft5">ALÃQ.</span></nobr></div>
 <div style="position:absolute;top:541;left:801"><nobr><span class="ft5">ICMS</span></nobr></div>
-<div style="position:absolute;top:530;left:831"><nobr><span class="ft5">ALÍQ.</span></nobr></div>
+<div style="position:absolute;top:530;left:831"><nobr><span class="ft5">ALÃQ.</span></nobr></div>
 <div style="position:absolute;top:541;left:837"><nobr><span class="ft5">IPI</span></nobr></div>
 
 <c:forEach items="${nfe.produtos}" var="prod">
@@ -254,7 +253,7 @@
 
 
 <div style="position:absolute;top:994;left:32"><nobr><span class="ft0"><b>DADOS ADICIONAIS</b></span></nobr></div>
-<div style="position:absolute;top:1007;left:36"><nobr><span class="ft5">INFORMAÇÕES COMPLEMENTARES</span></nobr></div>
+<div style="position:absolute;top:1007;left:36"><nobr><span class="ft5">INFORMAÃ‡Ã•ES COMPLEMENTARES</span></nobr></div>
 <div style="position:absolute;top:1007;left:521"><nobr><span class="ft5">RESERVADO AO FISCO</span></nobr></div>
 <div style="position:absolute;top:1018;left:36"><nobr><span class="ft10">DECLARAMOS QUE OS PRODUTOS DESTA NFE ESTAO DEVIDAMENTE <br>ACONDICIONADOS PARA SUPORTAR OS RISCOS NORMAIS DE CARREGAMENTO, <br>TRANSPORTE E DESCARREGAMENTO, CONFORME LEGISLACAO EM VIGOR.</span></nobr></div>
 <div style="position:absolute;top:1135;left:633"><nobr><span class="ft5">Emitido pelo RESTNFe v.1.1.0 - www.restnfe.com.br</span></nobr></div>
@@ -264,15 +263,14 @@
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  - - - - - - - - - - - - - - - - - - -</span></nobr></div>
-<div style="position:absolute;top:1160;left:37"><nobr><span class="ft11">RECEBEMOS DE ${nfe.emitente.nome} E/OU SERVIÇOS CONSTANTES DA NOTA FISCAL ELETRÔNICA INDICADA AO LADO.  EMISSÃO: <br>${nfe.dataEmissao}
-  VALOR TOTAL: ${nfe.imposto.valorTotal}  DESTINATÁRIO: ${nfe.destinatario.nome} - ${nfe.destinatario.endereco}, ${nfe.destinatario.bairro}, ${nfe.destinatario.cidade}-${nfe.destinatario.estado}</span></nobr></div>
+<div style="position:absolute;top:1160;left:37"><nobr><span class="ft11">RECEBEMOS DE ${nfe.emitente.nome} E/OU SERVIÃ‡OS CONSTANTES DA NOTA FISCAL ELETRÃ”NICA INDICADA AO LADO.  EMISSÃƒO: <br>${nfe.dataEmissao}
+  VALOR TOTAL: ${nfe.imposto.valorTotal}  DESTINATÃRIO: ${nfe.destinatario.nome} - ${nfe.destinatario.endereco}, ${nfe.destinatario.bairro}, ${nfe.destinatario.cidade}-${nfe.destinatario.estado}</span></nobr></div>
 <div style="position:absolute;top:1164;left:768"><nobr><span class="ft8"><b>NF-e</b></span></nobr></div>
 <div style="position:absolute;top:1194;left:36"><nobr><span class="ft5">DATA DO RECEBIMENTO</span></nobr></div>
-<div style="position:absolute;top:1204;left:757"><nobr><span class="ft8"><b>SÉRIE ${nfe.serie}</b></span></nobr></div>
-<div style="position:absolute;top:1183;left:738"><nobr><span class="ft8"><b>Nº. ${nfe.numeracao}</b></span></nobr></div>
-<div style="position:absolute;top:1194;left:188"><nobr><span class="ft5">IDENTIFICAÇÃO E ASSINATURA DO RECEBEDOR</span></nobr></div>
+<div style="position:absolute;top:1204;left:757"><nobr><span class="ft8"><b>SÃ‰RIE ${nfe.serie}</b></span></nobr></div>
+<div style="position:absolute;top:1183;left:738"><nobr><span class="ft8"><b>NÂº. ${nfe.numeracao}</b></span></nobr></div>
+<div style="position:absolute;top:1194;left:188"><nobr><span class="ft5">IDENTIFICAÃ‡ÃƒO E ASSINATURA DO RECEBEDOR</span></nobr></div>
 </div>
 
-
-
-</body></html>
+</body>
+</html>

@@ -1,7 +1,22 @@
 package br.com.jtron.restnfe.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.w3c.dom.Document;
+import org.w3c.tidy.Tidy;
+import org.xhtmlrenderer.pdf.ITextOutputDevice;
+import org.xhtmlrenderer.pdf.ITextRenderer;
+import org.xhtmlrenderer.pdf.ITextUserAgent;
+import org.xhtmlrenderer.resource.XMLResource;
+import org.xml.sax.InputSource;
 
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
@@ -16,14 +31,83 @@ import br.com.jtron.restnfe.entidade.envio.TNFe;
 import br.com.jtron.restnfe.entidade.envio.TNFe.InfNFe.Det;
 import br.com.jtron.restnfe.util.XmlUtil;
 
+import com.lowagie.text.DocumentException;
+
 @Resource
 public class PdfController {
 
-	private final Result result; 
+	private final Result result;
+	private final HttpServletResponse response;
 	
-	public PdfController(Result result) {
+	public PdfController(Result result,HttpServletResponse response) {
 		this.result = result;
+		this.response = response;
 	}
+	
+	@Path("/htmlPDF")
+	public void htmlPDF(){
+		
+	}
+	
+	
+	@Path("/nfe/pdf/{chave}")
+	public void pdf(String chave){
+		
+		try {
+						 
+        	OutputStream out = response.getOutputStream();        	
+        	        	
+        	//String contexto = PropertiesHelper.getInstance().getKey("contexto");
+        	String contexto = "http://localhost:8080/jtron-restnfe";
+        	
+        	String url = contexto+"/nfe/online/"+chave;        	
+        	
+	        if (url.indexOf("://") == -1) {
+	            // maybe it's a file
+	            File f = new File(url);
+	            if (f.exists()) {
+	                url = f.toURI().toURL().toString();
+	            }
+	        }	        			        
+
+            ITextRenderer renderer = new ITextRenderer();
+            ResourceLoaderUserAgent callback = new ResourceLoaderUserAgent(renderer.getOutputDevice());
+            callback.setSharedContext(renderer.getSharedContext());
+            renderer.getSharedContext ().setUserAgentCallback(callback);
+
+            //InputStream is = new InputSource(url).getByteStream();            
+            //Tidy tidy = new Tidy();
+            //tidy.parseDOM(is, null);
+                                     
+            Document doc = XMLResource.load(new InputSource(url)).getDocument();
+
+            renderer.setDocument(doc, url);
+            renderer.layout();
+            renderer.createPDF(out);
+            
+        } catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 	
+		
+	}
+	
+	
+	private static class ResourceLoaderUserAgent extends ITextUserAgent
+    {
+        public ResourceLoaderUserAgent(ITextOutputDevice outputDevice) {
+            super(outputDevice);
+        }
+
+        protected InputStream resolveAndOpenStream(String uri) {
+            InputStream is = super.resolveAndOpenStream(uri);
+            System.out.println("IN resolveAndOpenStream() " + uri);
+            return is;
+        }
+    }
 	
 	
 	/**
@@ -34,7 +118,7 @@ public class PdfController {
 	 * @param chave
 	 */
 	@Path("/nfe/online/{chave}")
-	public void pdf(String chave){	
+	public void online(String chave){	
 		
 		NFeDAO nFeDAO = new NFeDAO();
 		
