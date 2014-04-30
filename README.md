@@ -7,7 +7,7 @@ URL´s dos serviços :
 ! CUIDADO ! O parâmetro ambiente pode apontar tanto para produção do SEFAZ quando homologação. Cuidado ao usar este parâmetro.
 
 ambiente( 1 ) = PRODUÇÃO
-ambiente( 3 ) = HOMOLOGAÇÃO
+ambiente( 2 ) = HOMOLOGAÇÃO
 
 ```
 @Post(params={xml,ambiente})
