@@ -19,3 +19,8 @@ Serviços :
 
 /nfe/pdf/{chave}
 
+
+@Post
+
+/nfe/caneclar/{chave}
+
