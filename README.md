@@ -11,14 +11,18 @@ Serviços :
 /nfe/enviar/{chave}
 ```
 
-
+```
 @Get
 /nfe/online/{chave}
+```
 
+```
 @Get
 /nfe/pdf/{chave}
+```
 
-
+```
 @Post
 /nfe/caneclar/{chave}
+```
 
